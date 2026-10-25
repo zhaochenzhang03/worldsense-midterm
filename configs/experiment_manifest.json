@@ -134,8 +134,8 @@
     "runner": "scripts/run_evaluation.py",
     "validator": "scripts/validate_evaluation.py",
     "outputs": "outputs/<split>/<condition>.jsonl (gitignored)",
-    "status": "dev run (12 x 6) completed as protocol development/pilot; final test protocol frozen before the first test request (configs/final_test_protocol.json)",
-    "analysis": "scripts/analyze_results.py (offline) -> outputs/analysis/ (gitignored)",
+    "status": "dev run (12 x 6) completed as protocol development/pilot; final test protocol frozen (configs/final_test_protocol.json, commit 6cbe8e3) before the first test request; final test run completed 2026-10-25: 288/288 pairs succeeded, 0 failed attempts, protocol hashes unchanged",
+    "analysis": "scripts/analyze_results.py --split {dev,test} (offline) -> outputs/analysis/<split>/ (gitignored); final conclusions use test only",
     "gateway_model_id": "gemini/gemini-2.5-flash-lite",
     "final_test_protocol": {
       "protocol_file": "configs/final_test_protocol.json",

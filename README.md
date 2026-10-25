@@ -87,12 +87,29 @@ python -m scripts.validate_split       # check protocol invariants + manifest ha
 
 The frozen settings are in `configs/eval_config.json`:
 - model: Gemini 2.5 Flash-Lite via the CMU AI Gateway
-- temperature 0, prompt `v1`
+- temperature 0, `max_tokens` 512, prompt `v1`
 - the six conditions
 - resume on, with results saved immediately
 
+### Final test protocol
+
+The final protocol was frozen before the first TEST request and is recorded in
+`configs/final_test_protocol.json`: model, temperature 0, `max_tokens` 512
+(added before TEST because one uncapped DEV response ran to the Gateway's
+65,536-token limit), prompt `v1`, the six conditions, the parser, the 48-example
+test split (288 pairs) and SHA-256 hashes of the protocol files (config, splits,
+media manifests, prompt builder, parser, transport, runner).
+`python -m scripts.freeze_test_protocol` re-checks the hashes, and
+`validate_evaluation` runs the same check. DEV (N=12) served as protocol
+development and pilot; it is analyzed separately and never pooled with TEST.
+
+A completion that arrives without text (e.g. blocked, or cut off before any
+text) is saved as an empty `raw_response`, parsed as `invalid` and counted as
+incorrect; it is a model outcome and is never re-sent. Responses that hit
+`max_tokens` (`finish_reason` `length`) are parsed like any other.
+
 **Gateway transport** (`CMUGatewayClient` in `src/model_client.py`): one
-`POST /v1/chat/completions` per request, `temperature` 0, one user message with
+`POST /v1/chat/completions` per request, `temperature` 0, `max_tokens` 512, one user message with
 the media parts first and then the `v1` prompt text. Media is sent inline as
 OpenAI/LiteLLM `file` content parts,
 `{"type": "file", "file": {"file_data": "data:<mime>;base64,...", "format": "<mime>"}}`
@@ -134,24 +151,37 @@ text. The full provider response JSON (including token usage) is saved under
   - no `video_caption`, no API key
   - valid parse statuses
   - test outputs only together with a formal-run marker
+  - test records use exactly the frozen model, prompt version, temperature and
+    `max_tokens`
+  - protocol hashes in `configs/final_test_protocol.json` are unchanged
+  - per split and condition: number of pairs with a successful response
   - stored parses match the current parser on the saved raw response
 - `scripts/reparse_outputs.py`: after a parser change, re-derives
   `parsed_prediction`, `parse_status` and `correct` from the saved
   `raw_response` (offline; `--write` to rewrite atomically).
-- `scripts/analyze_results.py`: offline analysis (no API calls) into
-  `outputs/analysis/`: `main_results.csv`, `modality_gaps.json`,
-  `item_behavior.csv` (overlapping behavior labels), `subgroup_results.csv`,
-  `bootstrap_results.json` (paired bootstrap, 2000 resamples, seed 42, plus
-  exact McNemar), `prediction_agreement.csv`, `failure_cases.md`,
-  `<split>_summary.md` and SVG figures. Missing or unparsed answers count as
-  incorrect.
+- `scripts/freeze_test_protocol.py`: `--write` records the frozen test
+  protocol and its file hashes (once, before TEST); without flags it checks them.
+- `scripts/analyze_results.py --split {dev,test}`: offline analysis (no API
+  calls, saved records never modified) into `outputs/analysis/<split>/`:
+  `main_results.csv`, `modality_gaps.json`, `statistical_tests.csv` and
+  `bootstrap_results.json` (paired bootstrap, 10,000 resamples, seed 42, plus
+  exact McNemar for V+A vs V, A, V+S, S, Q), `item_behavior.csv` (overlapping
+  behavior labels), `conditional_necessity.csv`, `subgroup_results.csv`,
+  `subtitle_group_results.csv`, `task_domain_results.csv`,
+  `task_type_results.csv`, `prediction_agreement.csv`,
+  `prediction_letter_distribution.csv`, `parse_status_by_condition.csv`,
+  `behavior_cases.md`, `dev_vs_test.csv`, `<split>_summary.md` and SVG figures.
+  Missing or unparsed answers count as incorrect.
 
 ```bash
 python -m scripts.run_evaluation --all-conditions --limit 2 --dry-run   # no API calls
 python -m scripts.run_evaluation --condition full --uids <dev uid>        # real call (dev)
 python -m scripts.run_evaluation --all-conditions --workers 4             # full dev run, resumable
 python -m scripts.validate_evaluation
-python -m scripts.analyze_results                                         # offline, dev by default
+python -m scripts.analyze_results --split dev                             # offline
+python -m scripts.freeze_test_protocol                                    # check frozen test protocol hashes
+python -m scripts.run_evaluation --split test --allow-test --all-conditions --workers 4   # final test run
+python -m scripts.analyze_results --split test                            # offline final analysis
 ```
 
 ## Repository layout
@@ -183,6 +213,8 @@ scripts/run_evaluation.py       resumable, immediately-saving runner
 scripts/validate_evaluation.py  offline checks on saved outputs
 scripts/reparse_outputs.py      re-parse saved raw responses (offline)
 scripts/analyze_results.py      offline analysis, tables, figures
+scripts/freeze_test_protocol.py record / check the frozen test protocol
+configs/final_test_protocol.json  frozen test protocol + file hashes
 tests/test_answer_parser.py     parser regression tests
 configs/dev_ids.json            frozen dev split (12)
 configs/test_ids.json           frozen test split (48)
