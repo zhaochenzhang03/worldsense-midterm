@@ -184,6 +184,7 @@ def main() -> int:
     conditions = CONDITIONS if args.all_conditions else args.condition
     model = config["model"]["model_id"]
     temperature = config["generation"]["temperature"]
+    max_tokens = config["generation"].get("max_tokens")
     output_dir = Path(config["output_dir"]) / args.split
 
     # ---------------------------------------------------------
@@ -258,7 +259,10 @@ def main() -> int:
             print("=" * 70)
             print(f"[DRY RUN] {args.split} {example['uid']} condition={condition}")
             print("=" * 70)
-            print(f"model={model} temperature={temperature} prompt_version={PROMPT_VERSION}")
+            print(
+                f"model={model} temperature={temperature} "
+                f"max_tokens={max_tokens} prompt_version={PROMPT_VERSION}"
+            )
             print(f"subtitle_used={prompt.subtitle_used}")
             if prompt.media:
                 for media in prompt.media:
@@ -293,6 +297,8 @@ def main() -> int:
                 "started": datetime.now(timezone.utc).isoformat(),
                 "model": model,
                 "prompt_version": PROMPT_VERSION,
+                "temperature": temperature,
+                "max_tokens": max_tokens,
             }, indent=2) + "\n")
 
     existing = {}
@@ -361,6 +367,7 @@ def main() -> int:
                 "prompt_text": prompt.text,
                 "prompt_sha256": prompt.text_sha256,
                 "temperature": temperature,
+                "max_tokens": max_tokens,
                 "media": [
                     {"path": m.path, "mime_type": m.mime_type, "sha256": media_hashes[m.path]}
                     for m in prompt.media

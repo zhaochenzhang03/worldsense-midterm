@@ -1,0 +1,36 @@
+{
+  "description": "Frozen final TEST protocol, recorded before the first TEST request. Check with: python -m scripts.freeze_test_protocol",
+  "frozen_at": "2026-10-25T14:56:11.833856+00:00",
+  "frozen_before_first_test_request": true,
+  "model": "gemini-2.5-flash-lite",
+  "gateway_model_id": "gemini/gemini-2.5-flash-lite",
+  "gateway_base_url": "https://ai-gateway.andrew.cmu.edu",
+  "chat_completions_path": "/v1/chat/completions",
+  "temperature": 0,
+  "max_tokens": 512,
+  "prompt_version": "v1",
+  "conditions": [
+    "full",
+    "video_only",
+    "audio_only",
+    "video_subtitle",
+    "subtitle_only",
+    "question_only"
+  ],
+  "parser": "src/answer_parser.py as hashed below; unparsed (ambiguous/invalid) answers count as incorrect",
+  "test_split_size": 48,
+  "planned_pairs": 288,
+  "transient_retries": 2,
+  "sha256": {
+    "configs/eval_config.json": "ca7ce4081bdc77d1d93e7911b4a9ee14c1412f50175b210e1a9de63842dc56e8",
+    "configs/test_ids.json": "91d219b01ae267d3619a957b547dfe2d063c07245b8b3ce6756f8feb48a866bd",
+    "configs/dev_ids.json": "07db5b2e27f52405d0987ab9b12320063671304cf1613e8a345321ae29d7cddf",
+    "configs/media_manifest.json": "b4eb24e2935502466dec34c1a1785d917cdc673217045171dc63fe904c45523f",
+    "configs/variant_manifest.json": "5610e660d42ae4ff49b9d8c0d16d88e1c16970d9ba933cef62c0cba2054f0c55",
+    "src/prompting.py": "f81e038749770ef238a965b5b3900e7be81c80aff6a2f43023c8de9d4a8ada54",
+    "src/answer_parser.py": "f8a870169ddbcd8b3e3cdaa52568b83ac36cad2a2cabd277c3539454d9d8d5c6",
+    "src/model_client.py": "be51e4857818c6f92ef5d0f7fc955bf4dbef29a38cbbdffb3abded1ca05d0e7d",
+    "src/subtitle_utils.py": "1f2644399cb57dd0f08db5422b1c661f6d4d4d42cf4da0812e46f8f85d80b4ef",
+    "scripts/run_evaluation.py": "8ccbe9557a7804b72a161eef4329db6c72d4cd2d1babb218d1ff3386c92cc44d"
+  }
+}

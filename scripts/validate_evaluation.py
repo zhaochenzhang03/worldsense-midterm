@@ -5,6 +5,7 @@ import sys
 from pathlib import Path
 
 from scripts.create_split import JSON_PATH
+from scripts.freeze_test_protocol import PROTOCOL_FILE, check as check_protocol
 from scripts.run_evaluation import (
     EVAL_CONFIG,
     FORMAL_TEST_MARKER,
@@ -63,6 +64,7 @@ def main() -> int:
 
     problems = []
     counts = {}
+    successes = {}
 
     if not outputs_dir.exists():
         print(f"No outputs at {outputs_dir}; nothing to validate.")
@@ -126,6 +128,21 @@ def main() -> int:
                     if key in success_keys:
                         problems.append(f"{where}: duplicate successful result for {key}")
                     success_keys.add(key)
+                    successes[(split, condition)] = successes.get((split, condition), 0) + 1
+
+                # The formal test run uses exactly the frozen settings.
+                if split == "test":
+                    for field, expected_value in [
+                        ("model", config["model"]["model_id"]),
+                        ("gateway_model_id", config["model"]["gateway_model_id"]),
+                        ("prompt_version", PROMPT_VERSION),
+                        ("temperature", config["generation"]["temperature"]),
+                        ("max_tokens", config["generation"]["max_tokens"]),
+                    ]:
+                        if record.get(field) != expected_value:
+                            problems.append(
+                                f"{where}: {field} {record.get(field)!r} != frozen {expected_value!r}"
+                            )
 
                 # Predictions are a valid letter or explicitly unparsed.
                 letters = [c[0] for c in example["candidates"]]
@@ -167,8 +184,22 @@ def main() -> int:
                 if secret and secret in serialized:
                     problems.append(f"{where}: API key appears in record")
 
+    split_sizes = {}
+    for split, _ in frozen.values():
+        split_sizes[split] = split_sizes.get(split, 0) + 1
+
     for (split, condition), n in sorted(counts.items()):
-        print(f"  {split}/{condition}: {n} record(s)")
+        print(
+            f"  {split}/{condition}: {n} record(s), "
+            f"{successes.get((split, condition), 0)}/{split_sizes[split]} pairs with a success"
+        )
+
+    if PROTOCOL_FILE.exists():
+        changed = check_protocol()
+        for line in changed:
+            problems.append(f"frozen test protocol changed: {line}")
+        if not changed:
+            print(f"  {PROTOCOL_FILE}: all hashes unchanged")
 
     print()
     if problems:

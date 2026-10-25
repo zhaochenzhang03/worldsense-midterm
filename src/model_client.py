@@ -55,9 +55,10 @@ class TransientError(RuntimeError):
 class ModelClient:
     provider = "base"
 
-    def __init__(self, model: str, temperature: float):
+    def __init__(self, model: str, temperature: float, max_tokens: int | None = None):
         self.model = model
         self.temperature = temperature
+        self.max_tokens = max_tokens
 
     def check_ready(self) -> None:
         """
@@ -130,8 +131,15 @@ class CMUGatewayClient(ModelClient):
     timeout_seconds = 300
     transient_http_statuses = {408, 429, 500, 502, 503, 504}
 
-    def __init__(self, model: str, temperature: float, gateway_config: dict, gateway_model_id: str | None):
-        super().__init__(model, temperature)
+    def __init__(
+        self,
+        model: str,
+        temperature: float,
+        max_tokens: int | None,
+        gateway_config: dict,
+        gateway_model_id: str | None,
+    ):
+        super().__init__(model, temperature, max_tokens)
         self.gateway_config = gateway_config
         self.gateway_model_id = gateway_model_id
 
@@ -180,11 +188,14 @@ class CMUGatewayClient(ModelClient):
 
         content.append({"type": "text", "text": prompt.text})
 
-        return {
+        payload = {
             "model": self.gateway_model_id,
             "messages": [{"role": "user", "content": content}],
             "temperature": self.temperature,
         }
+        if self.max_tokens is not None:
+            payload["max_tokens"] = self.max_tokens
+        return payload
 
     def _send(self, prompt: Prompt) -> tuple[str, dict]:
         body = json.dumps(self._build_payload(prompt)).encode("utf-8")
@@ -212,12 +223,11 @@ class CMUGatewayClient(ModelClient):
             raise TransientError(self._redact(f"{type(error).__name__}: {error}")) from None
 
         choice = payload["choices"][0]
-        text = choice["message"].get("content")
-        if text is None:
-            raise RuntimeError(
-                f"no text content in response (finish_reason="
-                f"{choice.get('finish_reason')!r})"
-            )
+        # A completion without text (e.g. blocked, or cut off by
+        # max_tokens before any text) is still a model outcome, not a
+        # transport failure: keep it as an empty response so it is
+        # saved, parsed as invalid and never re-sent.
+        text = choice["message"].get("content") or ""
 
         metadata = {
             "http_status": status,
@@ -239,6 +249,7 @@ def make_client(config: dict) -> ModelClient:
         return CMUGatewayClient(
             model=model["model_id"],
             temperature=config["generation"]["temperature"],
+            max_tokens=config["generation"].get("max_tokens"),
             gateway_config=config["gateway"],
             gateway_model_id=model.get("gateway_model_id"),
         )

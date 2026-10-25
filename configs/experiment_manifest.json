@@ -124,7 +124,7 @@
     "video_caption is metadata only and must NEVER be used as model input (prompt or any other evaluation input); it describes the video content and would leak information.",
     "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts. They are normalized deterministically (see subtitles.normalization) and bracketed non-speech tags are kept.",
     "The test split must never be used for prompt tuning; tune on dev only.",
-    "Planned primary baseline model: Gemini 2.5 Flash-Lite via the CMU AI Gateway (not yet implemented)."
+    "Primary model: Gemini 2.5 Flash-Lite via the CMU AI Gateway (gateway model ID gemini/gemini-2.5-flash-lite)."
   ],
   "evaluation": {
     "config": "configs/eval_config.json",
@@ -134,8 +134,33 @@
     "runner": "scripts/run_evaluation.py",
     "validator": "scripts/validate_evaluation.py",
     "outputs": "outputs/<split>/<condition>.jsonl (gitignored)",
-    "status": "CMU AI Gateway transport implemented; full dev run (12 x 6) completed; test not run",
+    "status": "dev run (12 x 6) completed as protocol development/pilot; final test protocol frozen before the first test request (configs/final_test_protocol.json)",
     "analysis": "scripts/analyze_results.py (offline) -> outputs/analysis/ (gitignored)",
-    "gateway_model_id": "gemini/gemini-2.5-flash-lite"
+    "gateway_model_id": "gemini/gemini-2.5-flash-lite",
+    "final_test_protocol": {
+      "protocol_file": "configs/final_test_protocol.json",
+      "frozen_before_first_test_request": true,
+      "model_id": "gemini-2.5-flash-lite",
+      "gateway_model_id": "gemini/gemini-2.5-flash-lite",
+      "gateway": "https://ai-gateway.andrew.cmu.edu POST /v1/chat/completions",
+      "temperature": 0,
+      "max_tokens": 512,
+      "prompt_version": "v1",
+      "conditions": [
+        "full",
+        "video_only",
+        "audio_only",
+        "video_subtitle",
+        "subtitle_only",
+        "question_only"
+      ],
+      "parser": "src/answer_parser.py frozen as hashed (incl. \\boxed{X} support); no parser changes after the first test request; ambiguous/invalid answers count as incorrect",
+      "empty_completion_rule": "an HTTP 200 completion with no text is saved as an empty raw_response (parse_status invalid, incorrect) and never re-sent",
+      "retry_policy": "re-send only after HTTP 408/429/5xx, timeout or connection failure (no completion returned), at most 2 re-sends; wrong, refused, ambiguous, invalid or truncated answers are outcomes and never re-sent",
+      "test_split_size": 48,
+      "planned_pairs": 288,
+      "dev_role": "protocol development / pilot (N=12); never pooled with test",
+      "primary_analysis": "test only: accuracy over all 48 examples per condition; paired bootstrap 95% CI (10,000 resamples, seed 42) and exact McNemar for V+A vs V, A, V+S, S, Q"
+    }
   }
 }
