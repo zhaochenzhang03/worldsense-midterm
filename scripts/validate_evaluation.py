@@ -13,10 +13,13 @@ from scripts.run_evaluation import (
     load_jsonl,
     result_key,
 )
-from src.answer_parser import AMBIGUOUS, EXACT, INVALID, NORMALIZED
+from src.answer_parser import AMBIGUOUS, EXACT, INVALID, NORMALIZED, parse_answer
 from src.prompting import CONDITIONS, PROMPT_VERSION, build_prompt
 from src.worldsense_data import load_worldsense
 
+
+# Offline analysis outputs (scripts/analyze_results.py), not records.
+ANALYSIS_DIR = "analysis"
 
 REQUIRED_FIELDS = [
     "uid", "video_id", "split", "condition", "question", "candidates",
@@ -66,6 +69,8 @@ def main() -> int:
         return 0
 
     for split_dir in sorted(p for p in outputs_dir.iterdir()):
+        if split_dir.name == ANALYSIS_DIR and split_dir.is_dir():
+            continue
         if not split_dir.is_dir() or split_dir.name not in SPLIT_FILES:
             problems.append(f"unexpected entry in outputs: {split_dir.name}")
             continue
@@ -134,6 +139,15 @@ def main() -> int:
                         problems.append(f"{where}: {status} record has prediction {prediction!r}")
                 else:
                     problems.append(f"{where}: unknown parse_status {status!r}")
+
+                if record["raw_response"] is not None:
+                    current = parse_answer(record["raw_response"], letters)
+                    if (current.prediction, current.status) != (prediction, status):
+                        problems.append(
+                            f"{where}: stored parse {prediction} ({status}) differs "
+                            f"from current parser {current.prediction} ({current.status}); "
+                            "run python -m scripts.reparse_outputs --write"
+                        )
 
                 if is_success(record) and record["correct"] != (prediction == record["gold"]):
                     problems.append(f"{where}: 'correct' inconsistent with prediction/gold")

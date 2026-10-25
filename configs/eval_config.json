@@ -16,8 +16,19 @@
     "interface": "openai_compatible",
     "auth": "standard OpenAI-compatible API key (sent per the OpenAI client convention); the key itself is read only from the environment variable below and never stored",
     "api_key_env_var": "CMU_AI_GATEWAY_API_KEY",
-    "media_request_format": null,
-    "media_request_format_note": "How video/mp4 and audio/m4a parts must be encoded in an OpenAI-compatible request through this LiteLLM Gateway is not yet specified. src/model_client.py refuses to send requests until it is."
+    "media_request_format": {
+      "message_layout": "one user message; media content parts first (in condition order), then one text part with the v1 prompt",
+      "media_part": {
+        "type": "file",
+        "file": {
+          "file_data": "data:<mime_type>;base64,<file bytes>",
+          "format": "<mime_type>"
+        }
+      },
+      "source": "ChatCompletionFileObject / ChatCompletionFileObjectFile in the Gateway's GET /openapi.json (LiteLLM 1.103.4); InputAudio there only allows wav/mp3, so audio also uses the file part"
+    },
+    "media_request_format_note": "Media is sent inline (base64), not by URL. MIME types per condition come from src/prompting.py CONDITION_MEDIA.",
+    "chat_completions_path": "/v1/chat/completions"
   },
   "conditions": [
     "full",
@@ -33,5 +44,6 @@
   "output_dir": "outputs",
   "immediate_save": true,
   "resume": true,
-  "automatic_retries": 0
+  "transient_retries": 2,
+  "transient_retries_note": "Re-send only after a failed attempt that returned no completion (HTTP 408/429/5xx, timeout, connection error), so a successful call is never duplicated. Every attempt, failed or not, is saved."
 }

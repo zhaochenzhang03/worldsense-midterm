@@ -7,8 +7,12 @@ CMUGatewayClient, so the transport can change without touching the
 experiment.
 """
 
+import base64
+import json
 import os
 import time
+import urllib.error
+import urllib.request
 from dataclasses import dataclass, field
 
 from src.answer_parser import parse_answer
@@ -23,6 +27,9 @@ class ModelResponse:
     provider: str
     model: str
     error: str | None = None
+    # True if the failed request returned no completion and can be
+    # re-sent without risk of duplicating a success.
+    transient: bool = False
     latency_seconds: float | None = None
     # Non-secret request/response metadata, e.g. HTTP status,
     # provider response id, finish reason, token usage.
@@ -35,6 +42,14 @@ class ModelResponse:
 
 class GatewayNotConfigured(RuntimeError):
     pass
+
+
+class TransientError(RuntimeError):
+    """
+    A failed request that returned no completion (HTTP 408/429/5xx,
+    timeout, connection error). Re-sending it cannot duplicate a
+    saved success.
+    """
 
 
 class ModelClient:
@@ -81,6 +96,7 @@ class ModelClient:
                 provider=self.provider,
                 model=self.model,
                 error=f"{type(error).__name__}: {error}",
+                transient=isinstance(error, TransientError),
                 latency_seconds=time.monotonic() - start,
             )
 
@@ -101,14 +117,18 @@ class CMUGatewayClient(ModelClient):
     """
     CMU AI Gateway transport (LiteLLM, OpenAI-compatible).
 
-    The Gateway model identifier and the request format for
-    video/audio parts are not yet specified, so this client refuses
-    to send anything rather than guess. The API key is read from the
-    environment variable named in configs/eval_config.json and is
-    never logged or stored.
+    One POST /v1/chat/completions per request. Media is sent inline as
+    base64 data URLs in OpenAI/LiteLLM "file" content parts
+    ({"type": "file", "file": {"file_data": "data:<mime>;base64,...",
+    "format": "<mime>"}}), which LiteLLM forwards to Gemini as inline
+    data with the given MIME type. Media parts come before the text
+    part. The API key is read from the environment variable named in
+    configs/eval_config.json and is never logged or stored.
     """
 
     provider = "cmu_ai_gateway"
+    timeout_seconds = 300
+    transient_http_statuses = {408, 429, 500, 502, 503, 504}
 
     def __init__(self, model: str, temperature: float, gateway_config: dict, gateway_model_id: str | None):
         super().__init__(model, temperature)
@@ -137,15 +157,79 @@ class CMUGatewayClient(ModelClient):
                 "CMU AI Gateway is not configured: " + "; ".join(problems)
             )
 
+    def _api_key(self) -> str:
+        return os.environ[self.gateway_config["api_key_env_var"]]
+
+    def _redact(self, text: str) -> str:
+        key = self._api_key()
+        return text.replace(key, "[REDACTED]") if key else text
+
+    def _build_payload(self, prompt: Prompt) -> dict:
+        content = []
+
+        for media in prompt.media:
+            with open(media.path, "rb") as f:
+                data = base64.b64encode(f.read()).decode("ascii")
+            content.append({
+                "type": "file",
+                "file": {
+                    "file_data": f"data:{media.mime_type};base64,{data}",
+                    "format": media.mime_type,
+                },
+            })
+
+        content.append({"type": "text", "text": prompt.text})
+
+        return {
+            "model": self.gateway_model_id,
+            "messages": [{"role": "user", "content": content}],
+            "temperature": self.temperature,
+        }
+
     def _send(self, prompt: Prompt) -> tuple[str, dict]:
-        # Intentionally unimplemented until the Gateway interface is
-        # documented. Implement here only: build the request from
-        # prompt.text and prompt.media (path + mime_type), send it once
-        # with temperature=self.temperature, and return the response
-        # text plus non-secret metadata.
-        raise GatewayNotConfigured(
-            "CMU AI Gateway request format is not implemented yet"
+        body = json.dumps(self._build_payload(prompt)).encode("utf-8")
+        request = urllib.request.Request(
+            self.gateway_config["base_url"].rstrip("/") + "/v1/chat/completions",
+            data=body,
+            method="POST",
+            headers={
+                "Authorization": f"Bearer {self._api_key()}",
+                "Content-Type": "application/json",
+            },
         )
+
+        try:
+            with urllib.request.urlopen(request, timeout=self.timeout_seconds) as response:
+                status = response.status
+                payload = json.loads(response.read().decode("utf-8"))
+        except urllib.error.HTTPError as error:
+            detail = self._redact(error.read().decode("utf-8", "replace"))[:2000]
+            message = f"HTTP {error.code}: {detail}"
+            if error.code in self.transient_http_statuses:
+                raise TransientError(message) from None
+            raise RuntimeError(message) from None
+        except (urllib.error.URLError, TimeoutError, ConnectionError) as error:
+            raise TransientError(self._redact(f"{type(error).__name__}: {error}")) from None
+
+        choice = payload["choices"][0]
+        text = choice["message"].get("content")
+        if text is None:
+            raise RuntimeError(
+                f"no text content in response (finish_reason="
+                f"{choice.get('finish_reason')!r})"
+            )
+
+        metadata = {
+            "http_status": status,
+            "request_bytes": len(body),
+            "response_id": payload.get("id"),
+            "response_model": payload.get("model"),
+            "finish_reason": choice.get("finish_reason"),
+            "usage": payload.get("usage"),
+            "response_json": payload,
+        }
+
+        return text, metadata
 
 
 def make_client(config: dict) -> ModelClient:

@@ -36,6 +36,13 @@ _ANSWER_STATEMENT_RE = re.compile(
     re.IGNORECASE,
 )
 
+# LaTeX final-answer markup, e.g. "The final answer is $\\boxed{B}$" or
+# "\\boxed{\\text{C}}". Taken as the model's final committed answer and
+# preferred over other answer statements in the same response.
+_BOXED_RE = re.compile(
+    r"\\boxed\{\s*(?:\\text(?:bf)?\{\s*)?[\(\[]?([A-Z])(?![A-Za-z0-9])"
+)
+
 # Strip markdown emphasis / code markers around a response.
 _MARKUP_RE = re.compile(r"[*_`]+")
 
@@ -85,6 +92,17 @@ def parse_answer(raw: str | None, valid_letters: list[str]) -> ParsedAnswer:
     cleaned = _MARKUP_RE.sub("", text).strip()
 
     if not cleaned:
+        return ParsedAnswer(None, INVALID)
+
+    boxed = set(_BOXED_RE.findall(cleaned))
+
+    if len(boxed) > 1:
+        return ParsedAnswer(None, AMBIGUOUS)
+
+    if len(boxed) == 1:
+        letter = boxed.pop()
+        if letter in valid_letters:
+            return ParsedAnswer(letter, NORMALIZED)
         return ParsedAnswer(None, INVALID)
 
     # The answer letter itself must be uppercase; "answer"/"option"

@@ -42,8 +42,8 @@ generated. We call this input the "official subtitle" rather than a speech
 transcript, because the files can contain non-speech annotations such as
 `[Music]`.
 
-The planned primary baseline model is Gemini 2.5 Flash-Lite through the CMU AI
-Gateway. It is not implemented yet.
+The primary baseline model is Gemini 2.5 Flash-Lite through the CMU AI Gateway
+(Gateway model ID `gemini/gemini-2.5-flash-lite`).
 
 ## Evaluation protocol (frozen)
 
@@ -91,10 +91,18 @@ The frozen settings are in `configs/eval_config.json`:
 - the six conditions
 - resume on, with results saved immediately
 
-**The Gateway transport is not implemented yet.** `src/model_client.py` refuses to
-send requests until the Gateway interface, model identifier and credentials
-are specified. Credentials come only from the environment variables named in
-the config and are never logged or saved.
+**Gateway transport** (`CMUGatewayClient` in `src/model_client.py`): one
+`POST /v1/chat/completions` per request, `temperature` 0, one user message with
+the media parts first and then the `v1` prompt text. Media is sent inline as
+OpenAI/LiteLLM `file` content parts,
+`{"type": "file", "file": {"file_data": "data:<mime>;base64,...", "format": "<mime>"}}`
+(`ChatCompletionFileObject` in the Gateway's `/openapi.json`). MP4s go as
+`video/mp4`; the `audio_only` M4A goes as `audio/m4a` and is accepted unchanged,
+so no audio container conversion is needed. The Gateway's `input_audio` part
+only allows wav/mp3 and is not used. The API key comes only from
+`CMU_AI_GATEWAY_API_KEY`, is never logged or saved, and is redacted from error
+text. The full provider response JSON (including token usage) is saved under
+`request_metadata.response_json`.
 
 - `src/prompting.py`: one prompt builder for every condition. The instruction,
   question and choices are identical across conditions. The subtitle conditions
@@ -103,14 +111,22 @@ the config and are never logged or saved.
   `video_caption`.
 - `src/answer_parser.py`: maps raw responses to a letter with `parse_status`
   `exact`, `normalized`, `ambiguous` or `invalid`. It never guesses between
-  conflicting letters. Tests: `python -m unittest tests.test_answer_parser`.
+  conflicting letters. A LaTeX `\boxed{X}` final answer, which Gemini often
+  writes after an explanation, is taken as the answer (several different boxed
+  letters: `ambiguous`). Tests: `python -m unittest tests.test_answer_parser`.
 - `scripts/run_evaluation.py`: runs on dev by default.
   - `--split test` exits before any API call unless `--allow-test` is also given.
   - Each call is appended to `outputs/<split>/<condition>.jsonl` and fsynced
     right away.
   - Pairs `(uid, condition, model, prompt_version)` that already succeeded are
-    skipped, and successes are never duplicated. Failed pairs are re-attempted
-    only with `--retry-failed`. There are no automatic retries.
+    skipped, and successes are never duplicated. Failed pairs from earlier runs
+    are re-attempted only with `--retry-failed`.
+  - Within a run, a request is re-sent (up to `transient_retries` = 2 times,
+    after 15 s / 60 s) only after a transient failure that returned no
+    completion: HTTP 408/429/5xx, timeout or connection error. Every attempt is
+    saved.
+  - `--workers N` (1-5) sends up to N requests concurrently; appends are
+    serialized.
 - `scripts/validate_evaluation.py`: offline checks on saved outputs:
   - only frozen UIDs, in the correct split
   - no duplicate successes
@@ -118,11 +134,24 @@ the config and are never logged or saved.
   - no `video_caption`, no API key
   - valid parse statuses
   - test outputs only together with a formal-run marker
+  - stored parses match the current parser on the saved raw response
+- `scripts/reparse_outputs.py`: after a parser change, re-derives
+  `parsed_prediction`, `parse_status` and `correct` from the saved
+  `raw_response` (offline; `--write` to rewrite atomically).
+- `scripts/analyze_results.py`: offline analysis (no API calls) into
+  `outputs/analysis/`: `main_results.csv`, `modality_gaps.json`,
+  `item_behavior.csv` (overlapping behavior labels), `subgroup_results.csv`,
+  `bootstrap_results.json` (paired bootstrap, 2000 resamples, seed 42, plus
+  exact McNemar), `prediction_agreement.csv`, `failure_cases.md`,
+  `<split>_summary.md` and SVG figures. Missing or unparsed answers count as
+  incorrect.
 
 ```bash
 python -m scripts.run_evaluation --all-conditions --limit 2 --dry-run   # no API calls
 python -m scripts.run_evaluation --condition full --uids <dev uid>        # real call (dev)
+python -m scripts.run_evaluation --all-conditions --workers 4             # full dev run, resumable
 python -m scripts.validate_evaluation
+python -m scripts.analyze_results                                         # offline, dev by default
 ```
 
 ## Repository layout
@@ -152,6 +181,8 @@ src/answer_parser.py            response -> letter + parse_status
 src/model_client.py             provider abstraction (Gateway isolated)
 scripts/run_evaluation.py       resumable, immediately-saving runner
 scripts/validate_evaluation.py  offline checks on saved outputs
+scripts/reparse_outputs.py      re-parse saved raw responses (offline)
+scripts/analyze_results.py      offline analysis, tables, figures
 tests/test_answer_parser.py     parser regression tests
 configs/dev_ids.json            frozen dev split (12)
 configs/test_ids.json           frozen test split (48)

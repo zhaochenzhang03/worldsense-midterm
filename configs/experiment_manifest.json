@@ -134,6 +134,8 @@
     "runner": "scripts/run_evaluation.py",
     "validator": "scripts/validate_evaluation.py",
     "outputs": "outputs/<split>/<condition>.jsonl (gitignored)",
-    "status": "harness built; CMU AI Gateway transport not yet specified, no API calls made"
+    "status": "CMU AI Gateway transport implemented; full dev run (12 x 6) completed; test not run",
+    "analysis": "scripts/analyze_results.py (offline) -> outputs/analysis/ (gitignored)",
+    "gateway_model_id": "gemini/gemini-2.5-flash-lite"
   }
 }

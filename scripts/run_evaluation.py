@@ -2,6 +2,9 @@ import argparse
 import json
 import os
 import sys
+import threading
+import time
+from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -19,6 +22,9 @@ from src.worldsense_data import load_worldsense
 EVAL_CONFIG = Path("configs/eval_config.json")
 SPLIT_FILES = {"dev": DEV_OUTPUT, "test": TEST_OUTPUT}
 FORMAL_TEST_MARKER = "_formal_run.json"
+MAX_WORKERS = 5
+# Seconds to wait before re-sending after the n-th transient failure.
+RETRY_BACKOFF_SECONDS = [15, 60]
 
 
 def parse_args():
@@ -61,6 +67,12 @@ def parse_args():
         "--retry-failed",
         action="store_true",
         help="Re-attempt pairs whose saved records are all errors.",
+    )
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help=f"Concurrent requests (1-{MAX_WORKERS}).",
     )
     parser.add_argument(
         "--dry-run",
@@ -163,7 +175,12 @@ def main() -> int:
         )
         return 1
 
+    if not 1 <= args.workers <= MAX_WORKERS:
+        print(f"ERROR: --workers must be 1-{MAX_WORKERS}", file=sys.stderr)
+        return 2
+
     resume = config["resume"] if args.resume is None else args.resume
+    transient_retries = config["transient_retries"]
     conditions = CONDITIONS if args.all_conditions else args.condition
     model = config["model"]["model_id"]
     temperature = config["generation"]["temperature"]
@@ -283,7 +300,8 @@ def main() -> int:
         for record in load_jsonl(output_dir / f"{condition}.jsonl"):
             existing.setdefault(result_key(record), []).append(record)
 
-    called = skipped = failed = 0
+    todo = []
+    skipped = 0
 
     for index, (condition, example, prompt) in enumerate(plan, start=1):
         key = (example["uid"], condition, model, PROMPT_VERSION)
@@ -307,59 +325,84 @@ def main() -> int:
             skipped += 1
             continue
 
-        media_paths = [m.path for m in prompt.media]
-        response = client.generate(example, condition, prompt, media_paths)
+        todo.append((prefix, condition, example, prompt))
 
-        record = {
-            "uid": example["uid"],
-            "video_id": example["video_id"],
-            "split": args.split,
-            "condition": condition,
-            "question": example["question"],
-            "candidates": example["candidates"],
-            "gold": example["answer"],
-            "raw_response": response.raw_response,
-            "parsed_prediction": response.parsed_prediction,
-            "parse_status": response.parse_status,
-            "correct": (
-                response.parsed_prediction == example["answer"]
-                if response.ok else None
-            ),
-            "model": model,
-            "provider": response.provider,
-            "gateway_model_id": config["model"].get("gateway_model_id"),
-            "prompt_version": PROMPT_VERSION,
-            "prompt_text": prompt.text,
-            "prompt_sha256": prompt.text_sha256,
-            "temperature": temperature,
-            "media": [
-                {"path": m.path, "mime_type": m.mime_type, "sha256": media_hashes[m.path]}
-                for m in prompt.media
-            ],
-            "subtitle_used": prompt.subtitle_used,
-            "timestamp": datetime.now(timezone.utc).isoformat(),
-            "latency_seconds": response.latency_seconds,
-            "error": response.error,
-            "request_metadata": response.request_metadata,
-        }
-        append_jsonl(output_dir / f"{condition}.jsonl", record)
-        existing.setdefault(key, []).append(record)
-        called += 1
+    lock = threading.Lock()
+    counts = {"called": 0, "failed": 0}
 
-        if response.ok:
-            print(
-                f"{prefix}: {response.raw_response!r} -> "
-                f"{response.parsed_prediction} ({response.parse_status})"
+    def run_pair(prefix, condition, example, prompt):
+        """
+        Call once; re-send only after a transient failure, which
+        returned no completion. Every attempt is saved immediately.
+        """
+        for attempt in range(1, transient_retries + 2):
+            response = client.generate(
+                example, condition, prompt, [m.path for m in prompt.media]
             )
-        else:
-            failed += 1
-            print(f"{prefix}: ERROR {response.error}")
+            record = {
+                "uid": example["uid"],
+                "video_id": example["video_id"],
+                "split": args.split,
+                "condition": condition,
+                "question": example["question"],
+                "candidates": example["candidates"],
+                "gold": example["answer"],
+                "raw_response": response.raw_response,
+                "parsed_prediction": response.parsed_prediction,
+                "parse_status": response.parse_status,
+                "correct": (
+                    response.parsed_prediction == example["answer"]
+                    if response.ok else None
+                ),
+                "model": model,
+                "provider": response.provider,
+                "gateway_model_id": config["model"].get("gateway_model_id"),
+                "prompt_version": PROMPT_VERSION,
+                "prompt_text": prompt.text,
+                "prompt_sha256": prompt.text_sha256,
+                "temperature": temperature,
+                "media": [
+                    {"path": m.path, "mime_type": m.mime_type, "sha256": media_hashes[m.path]}
+                    for m in prompt.media
+                ],
+                "subtitle_used": prompt.subtitle_used,
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "latency_seconds": response.latency_seconds,
+                "attempt": attempt,
+                "error": response.error,
+                "request_metadata": response.request_metadata,
+            }
+            with lock:
+                append_jsonl(output_dir / f"{condition}.jsonl", record)
+                existing.setdefault(result_key(record), []).append(record)
+                counts["called"] += 1
+                if response.ok:
+                    print(
+                        f"{prefix}: {response.raw_response[-80:]!r} -> "
+                        f"{response.parsed_prediction} ({response.parse_status})"
+                    )
+                else:
+                    counts["failed"] += 1
+                    print(f"{prefix}: ERROR (attempt {attempt}) {response.error[:300]}")
+
+            if response.ok or not response.transient or attempt > transient_retries:
+                return response.ok
+            time.sleep(RETRY_BACKOFF_SECONDS[min(attempt, len(RETRY_BACKOFF_SECONDS)) - 1])
+
+    with ThreadPoolExecutor(max_workers=args.workers) as pool:
+        outcomes = list(pool.map(lambda job: run_pair(*job), todo))
+
+    called, failed = counts["called"], counts["failed"]
+    unresolved = outcomes.count(False)
 
     print()
-    print(f"Calls: {called}  Skipped: {skipped}  Errors: {failed}")
+    print(
+        f"Calls: {called}  Skipped: {skipped}  Failed attempts: {failed}  "
+        f"Pairs still without a success: {unresolved}"
+    )
     print(f"Outputs: {output_dir}/<condition>.jsonl")
 
-    return 1 if failed else 0
+    return 1 if unresolved else 0
 
 
 if __name__ == "__main__":
