@@ -4,8 +4,8 @@
     "name": "Gemini 2.5 Flash-Lite",
     "model_id": "gemini-2.5-flash-lite",
     "provider": "cmu_ai_gateway",
-    "gateway_model_id": null,
-    "gateway_model_id_note": "Exact model identifier expected by the CMU AI Gateway is not yet known; must be filled in from Gateway documentation. Do not substitute another model."
+    "gateway_model_id": "gemini/gemini-2.5-flash-lite",
+    "gateway_model_id_note": "Exact identifier listed by GET /v1/models on the CMU AI Gateway (the only model exposed)."
   },
   "generation": {
     "temperature": 0
