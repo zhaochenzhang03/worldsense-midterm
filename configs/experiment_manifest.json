@@ -7,6 +7,41 @@
   "dev_split_sha256": "07db5b2e27f52405d0987ab9b12320063671304cf1613e8a345321ae29d7cddf",
   "test_split_file": "configs/test_ids.json",
   "test_split_sha256": "91d219b01ae267d3619a957b547dfe2d063c07245b8b3ce6756f8feb48a866bd",
+  "subtitles": {
+    "source": "official WorldSense subtitles, Hugging Face dataset honglyhly/WorldSense",
+    "archive_url": "https://huggingface.co/datasets/honglyhly/WorldSense/resolve/main/worldsense_subtitles.zip",
+    "archive_file": "data/worldsense/raw/worldsense_subtitles.zip",
+    "archive_sha256": "5a55bd21079e677b3ac76628646e37680b105e99d892becf6ae7bcb7d874827e",
+    "extraction_dir": "data/worldsense/subtitles",
+    "filename_convention": "<video_id>.srt (flat, one file per video, 1662 files)",
+    "format": "SRT, UTF-8",
+    "asr_generated": false,
+    "condition_label": "official subtitle (may contain non-speech annotations such as [Music]; not strictly a speech transcript)",
+    "normalization": {
+      "code": "src/subtitle_utils.py:normalize_subtitle_text",
+      "frozen": true,
+      "steps": [
+        "remove SRT sequence numbers (digit-only line immediately followed by a timestamp line)",
+        "remove timestamp lines and blank lines",
+        "strip leading/trailing whitespace of each line",
+        "remove exact duplicate lines (rolling captions) across the whole file, keeping first occurrence and order",
+        "preserve all remaining text verbatim, including bracketed non-speech tags such as [Music] and [Applause]",
+        "join lines with a newline"
+      ],
+      "not_done": "no summarization, paraphrasing, translation, inference of missing content, ASR, or video_caption fallback"
+    },
+    "processed_dir": "data/worldsense/processed_subtitles",
+    "processed_script": "scripts/process_subtitles.py",
+    "processed_digest_sha256": "9ab790457fb32ba356dd6c045158bcd7b68a04a73dc8fcf1e13450f668a7a1e1",
+    "processed_digest_definition": "SHA-256 of the sorted lines '<video_id>\\t<sha256 of normalized UTF-8 text>\\n' over the frozen 60 video_ids",
+    "frozen_60_coverage": {
+      "raw_found": 60,
+      "usable_linguistic": 53,
+      "non_speech_tags_only": 7,
+      "empty": 0,
+      "missing": 0
+    }
+  },
   "split_frozen": true,
   "split_script": "scripts/create_split.py",
   "seed": 42,
@@ -45,7 +80,7 @@
   ],
   "notes": [
     "video_caption is metadata only and must NEVER be used as model input (prompt or any other evaluation input); it describes the video content and would leak information.",
-    "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts.",
+    "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts. They are normalized deterministically (see subtitles.normalization) and bracketed non-speech tags are kept.",
     "The test split must never be used for prompt tuning; tune on dev only.",
     "Planned primary baseline model: Gemini 2.5 Flash-Lite via the CMU AI Gateway (not yet implemented)."
   ]
