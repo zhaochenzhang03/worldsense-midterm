@@ -128,8 +128,9 @@ The archive is flat: one `<video_id>.srt` file per WorldSense video.
 - removes SRT sequence numbers and timestamps (a numeric line counts as a
   sequence number only when the next line is a timestamp, so subtitle text such
   as `2001` is kept),
-- removes exact duplicate lines (rolling captions) across the whole file,
-  keeping the first occurrence and the original order,
+- removes a line only when it exactly repeats the line directly before it
+  (rolling captions). Identical text that comes back later in the video, such
+  as a second `[Music]`, is **kept**. There is no file-wide deduplication,
 - keeps all other text exactly as written, **including bracketed non-speech
   tags** such as `[Music]` and `[Applause]`.
 

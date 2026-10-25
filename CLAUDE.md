@@ -18,9 +18,9 @@ modality necessity and substitutability on the WorldSense benchmark. Read
   model-generated captions. Call this input the "official subtitle", not a
   speech transcript: it can contain tags such as `[Music]`.
 - Subtitle normalization (`src/subtitle_utils.py:normalize_subtitle_text`) is
-  **frozen**. It removes sequence numbers and timestamps, dedupes exact repeated
-  lines (keeping the first occurrence and order), and keeps bracketed non-speech
-  tags. Never summarize, paraphrase, translate or replace subtitle text. Do not
+  **frozen**. It removes sequence numbers and timestamps and removes only
+  *consecutive* exact duplicate lines. Text that recurs at different times is
+  kept, with no file-wide dedupe. Bracketed non-speech tags are kept. Never summarize, paraphrase, translate or replace subtitle text. Do not
   change this function without permission. `python -m scripts.inspect_subtitles`
   checks the processed output against the manifest digest.
 - After touching anything split-related, run `python -m scripts.validate_split`.

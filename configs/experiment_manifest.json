@@ -24,7 +24,7 @@
         "remove SRT sequence numbers (digit-only line immediately followed by a timestamp line)",
         "remove timestamp lines and blank lines",
         "strip leading/trailing whitespace of each line",
-        "remove exact duplicate lines (rolling captions) across the whole file, keeping first occurrence and order",
+        "remove only consecutive exact duplicate lines (rolling captions); identical text recurring later (e.g. a second [Music]) is kept; no global deduplication",
         "preserve all remaining text verbatim, including bracketed non-speech tags such as [Music] and [Applause]",
         "join lines with a newline"
       ],
@@ -32,7 +32,7 @@
     },
     "processed_dir": "data/worldsense/processed_subtitles",
     "processed_script": "scripts/process_subtitles.py",
-    "processed_digest_sha256": "9ab790457fb32ba356dd6c045158bcd7b68a04a73dc8fcf1e13450f668a7a1e1",
+    "processed_digest_sha256": "446958a93aec1034cc0c961a3f2ad2daebcfded044ee49290ecb3a6a845dd1c5",
     "processed_digest_definition": "SHA-256 of the sorted lines '<video_id>\\t<sha256 of normalized UTF-8 text>\\n' over the frozen 60 video_ids",
     "frozen_60_coverage": {
       "raw_found": 60,

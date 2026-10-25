@@ -47,35 +47,32 @@ def extract_subtitle_lines(srt_text: str) -> list[str]:
     return text_lines
 
 
-def dedupe_lines(lines: list[str]) -> list[str]:
+def dedupe_consecutive_lines(lines: list[str]) -> list[str]:
     """
-    Remove exact duplicate lines, keeping the first occurrence
-    and the original order.
+    Remove a line only when it exactly equals the line directly
+    before it (rolling-caption repeats). Identical text that
+    recurs later, after a different line, is kept.
     """
-    seen = set()
-    unique = []
-
-    for line in lines:
-        if line in seen:
-            continue
-
-        seen.add(line)
-        unique.append(line)
-
-    return unique
+    return [
+        line
+        for i, line in enumerate(lines)
+        if i == 0 or line != lines[i - 1]
+    ]
 
 
 def normalize_subtitle_text(srt_text: str) -> str:
     """
     Frozen subtitle normalization used for model input:
       - remove SRT sequence numbers and timestamps
-      - remove exact duplicate lines (rolling captions),
-        keeping first occurrence and order
+      - remove consecutive exact duplicate lines only
+        (rolling captions); recurring text is kept
       - keep all text, including bracketed tags like [Music],
         exactly as written
     Lines are joined with "\\n". Returns "" for an empty file.
     """
-    return "\n".join(dedupe_lines(extract_subtitle_lines(srt_text)))
+    return "\n".join(
+        dedupe_consecutive_lines(extract_subtitle_lines(srt_text))
+    )
 
 
 def load_normalized_subtitle(path: str | Path) -> str:
