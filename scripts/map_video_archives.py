@@ -1,6 +1,9 @@
+import http.client
 import json
 import struct
 import sys
+import time
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -24,29 +27,73 @@ CENTRAL_HEADER_SIG = b"PK\x01\x02"
 EOCD_SEARCH_BYTES = 22 + 65535
 
 
-def fetch_range(url: str, start: int, end: int) -> bytes:
+MAX_ATTEMPTS = 5
+
+
+def with_retries(description: str, func):
     """
-    Fetch bytes [start, end] (inclusive) with an HTTP Range request.
+    Call func(), retrying transient network failures with
+    exponential backoff (2, 4, 8, 16 s).
+    """
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            return func()
+        except (OSError, http.client.HTTPException) as error:
+            # Client errors other than rate limiting are not transient.
+            if (
+                isinstance(error, urllib.error.HTTPError)
+                and 400 <= error.code < 500
+                and error.code != 429
+            ):
+                raise
+
+            if attempt == MAX_ATTEMPTS:
+                raise
+
+            delay = 2 ** attempt
+            print(
+                f"    {description}: {error!r}; "
+                f"retry {attempt}/{MAX_ATTEMPTS - 1} in {delay}s",
+                file=sys.stderr,
+            )
+            time.sleep(delay)
+
+
+def open_range(url: str, start: int, end: int):
+    """
+    Open an HTTP Range request for bytes [start, end] (inclusive)
+    and return the response, checking for HTTP 206.
     """
     request = urllib.request.Request(
         url,
         headers={"Range": f"bytes={start}-{end}"},
     )
+    response = urllib.request.urlopen(request, timeout=60)
 
-    with urllib.request.urlopen(request) as response:
-        if response.status != 206:
-            raise RuntimeError(
-                f"{url}: expected HTTP 206 for range request, "
-                f"got {response.status}"
-            )
-        data = response.read()
-
-    if len(data) != end - start + 1:
+    if response.status != 206:
+        response.close()
         raise RuntimeError(
-            f"{url}: expected {end - start + 1} bytes, got {len(data)}"
+            f"{url}: expected HTTP 206 for range request, "
+            f"got {response.status}"
         )
 
-    return data
+    return response
+
+
+def fetch_range(url: str, start: int, end: int) -> bytes:
+    """
+    Fetch bytes [start, end] (inclusive) with an HTTP Range request.
+    """
+    def attempt() -> bytes:
+        with open_range(url, start, end) as response:
+            data = response.read()
+
+        if len(data) != end - start + 1:
+            raise http.client.IncompleteRead(data, end - start + 1)
+
+        return data
+
+    return with_retries(f"range {start}-{end} of {url}", attempt)
 
 
 def list_video_archives() -> dict[str, int]:
@@ -54,8 +101,11 @@ def list_video_archives() -> dict[str, int]:
     Return {archive filename: size in bytes} for every
     worldsense_videos_*.zip in the official repository.
     """
-    with urllib.request.urlopen(TREE_API_URL) as response:
-        tree = json.load(response)
+    def attempt():
+        with urllib.request.urlopen(TREE_API_URL, timeout=60) as response:
+            return json.load(response)
+
+    tree = with_retries("list repository files", attempt)
 
     return {
         entry["path"]: entry["size"]
@@ -69,6 +119,18 @@ def read_central_directory(url: str, size: int) -> list[str]:
     """
     Read only the zip central directory of a remote archive
     and return the member filenames.
+    """
+    return [
+        entry["name"]
+        for entry in read_central_directory_entries(url, size)
+    ]
+
+
+def read_central_directory_entries(url: str, size: int) -> list[dict]:
+    """
+    Read only the zip central directory of a remote archive and
+    return one record per member: name, flags, compression method,
+    CRC-32, compressed/uncompressed size and local header offset.
     """
     tail_start = max(0, size - EOCD_SEARCH_BYTES)
     tail = fetch_range(url, tail_start, size - 1)
@@ -104,7 +166,7 @@ def read_central_directory(url: str, size: int) -> list[str]:
 
     directory = fetch_range(url, cd_offset, cd_offset + cd_size - 1)
 
-    names = []
+    entries = []
     pos = 0
 
     for _ in range(num_entries):
@@ -113,15 +175,62 @@ def read_central_directory(url: str, size: int) -> list[str]:
                 f"{url}: bad central directory header at offset {pos}"
             )
 
+        flags, method = struct.unpack("<HH", directory[pos + 8:pos + 12])
+        crc32, compressed_size, file_size = struct.unpack(
+            "<III", directory[pos + 16:pos + 28]
+        )
         name_len, extra_len, comment_len = struct.unpack(
             "<HHH", directory[pos + 28:pos + 34]
         )
+        (header_offset,) = struct.unpack(
+            "<I", directory[pos + 42:pos + 46]
+        )
         name = directory[pos + 46:pos + 46 + name_len].decode("utf-8")
-        names.append(name)
+
+        # Zip64 extra field (id 0x0001) holds 64-bit values for any
+        # field stored as 0xFFFFFFFF, in this fixed order.
+        if 0xFFFFFFFF in (file_size, compressed_size, header_offset):
+            extra = directory[
+                pos + 46 + name_len:pos + 46 + name_len + extra_len
+            ]
+            values = {}
+            i = 0
+            while i + 4 <= len(extra):
+                tag, length = struct.unpack("<HH", extra[i:i + 4])
+                if tag == 0x0001:
+                    data = extra[i + 4:i + 4 + length]
+                    fields = [
+                        key
+                        for key, value in (
+                            ("file_size", file_size),
+                            ("compressed_size", compressed_size),
+                            ("header_offset", header_offset),
+                        )
+                        if value == 0xFFFFFFFF
+                    ]
+                    for j, key in enumerate(fields):
+                        (values[key],) = struct.unpack(
+                            "<Q", data[8 * j:8 * j + 8]
+                        )
+                i += 4 + length
+
+            file_size = values.get("file_size", file_size)
+            compressed_size = values.get("compressed_size", compressed_size)
+            header_offset = values.get("header_offset", header_offset)
+
+        entries.append({
+            "name": name,
+            "flags": flags,
+            "method": method,
+            "crc32": crc32,
+            "compressed_size": compressed_size,
+            "file_size": file_size,
+            "header_offset": header_offset,
+        })
 
         pos += 46 + name_len + extra_len + comment_len
 
-    return names
+    return entries
 
 
 def main() -> int:
