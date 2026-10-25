@@ -1,0 +1,1057 @@
+[
+  {
+    "uid": "mDwMBvoz::task0",
+    "video_id": "mDwMBvoz",
+    "task_id": "task0",
+    "video_duration": "119s",
+    "domain": "Sports",
+    "sub_category": "Football",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Attribute Recognition",
+    "question": "Which player (by jersey number) missed the shot in the video?",
+    "candidates": [
+      "A. Number 10.",
+      "B. Number 11.",
+      "C. Number 26.",
+      "D. Number 25."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "CrOuXLhe::task1",
+    "video_id": "CrOuXLhe",
+    "task_id": "task1",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Covers",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Source Localization",
+    "question": "Where does the piano sound in the video originate?",
+    "candidates": [
+      "A. A man in a black suit.",
+      "B. A woman with short hair.",
+      "C. A man in a blue suit.",
+      "D. A woman in a black skirt."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "ndMGQClm::task0",
+    "video_id": "ndMGQClm",
+    "task_id": "task0",
+    "video_duration": "44s",
+    "domain": "Tech & Science",
+    "sub_category": "Artificial Intelligence",
+    "audio_class": [
+      "Speech"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Text and Diagram Understanding",
+    "question": "What numbers are used to label the value vectors displayed at the end of the video?",
+    "candidates": [
+      "A. 1, 0, 2.",
+      "B. 0, 1, 1.",
+      "C. 4, 4, 1.",
+      "D. 1, 2, 3."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "vEwHYQtH::task1",
+    "video_id": "vEwHYQtH",
+    "task_id": "task1",
+    "video_duration": "48s",
+    "domain": "Sports",
+    "sub_category": "Other Sports",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human Interaction",
+    "question": "What is the policewoman wearing a watch and the bald male officer attempting to do while speaking in the video?",
+    "candidates": [
+      "A. Adjust the vehicle and prepare to remain in place.",
+      "B. Analyze the map and prepare to alter the plan.",
+      "C. Analyze the map and prepare to remain in place.",
+      "D. Adjust the vehicle and prepare to alter the plan."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "kuhPQczc::task2",
+    "video_id": "kuhPQczc",
+    "task_id": "task2",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Music Videos",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Video Emotions",
+    "question": "What emotion does the song in the video convey?",
+    "candidates": [
+      "A. Somber and gloomy.",
+      "B. Energetic and aggressive.",
+      "C. Gentle and calming.",
+      "D. Violent and blood-soaked."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "wCZkPkru::task0",
+    "video_id": "wCZkPkru",
+    "task_id": "task0",
+    "video_duration": "87s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Scene Recognition",
+    "question": "Where does the scene of a police car chasing another car occur in the video?",
+    "candidates": [
+      "A. A grassland.",
+      "B. A highway.",
+      "C. A desert.",
+      "D. A forest."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "tkZqcJYF::task1",
+    "video_id": "tkZqcJYF",
+    "task_id": "task1",
+    "video_duration": "43s",
+    "domain": "Daily Life",
+    "sub_category": "Pranks",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Anomaly Recognition",
+    "question": "What special action is performed after smelling something in the video?",
+    "candidates": [
+      "A. Rubs the face.",
+      "B. Waves a hand in front.",
+      "C. Adjusts the clothes.",
+      "D. Pinches the nose."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "Kauavmph::task0",
+    "video_id": "Kauavmph",
+    "task_id": "task0",
+    "video_duration": "82s",
+    "domain": "Culture & Politics",
+    "sub_category": "Politics",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Temporal Prediction",
+    "question": "Will the U.S. government impose sanctions on Zelensky next?",
+    "candidates": [
+      "A. No, it will not.",
+      "B. None of the above.",
+      "C. Yes, it will.",
+      "D. It is not known."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "tTHbptSD::task1",
+    "video_id": "tTHbptSD",
+    "task_id": "task1",
+    "video_duration": "107s",
+    "domain": "Culture & Politics",
+    "sub_category": "Book Reviews",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Object State Change",
+    "question": "In the latter part of the video, does the man close the book?",
+    "candidates": [
+      "A. None of the above.",
+      "B. No, he does not.",
+      "C. It is not possible to determine.",
+      "D. Yes, he does."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "IIsRSTmT::task1",
+    "video_id": "IIsRSTmT",
+    "task_id": "task1",
+    "video_duration": "39s",
+    "domain": "Culture & Politics",
+    "sub_category": "Editorials",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Spatial Relation",
+    "question": "In Walmart, what is the position of black male staff members in relation to black female staff members?",
+    "candidates": [
+      "A. Directly in front.",
+      "B. To the left and front.",
+      "C. To the right and front.",
+      "D. Directly behind."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "BVHuJecL::task2",
+    "video_id": "BVHuJecL",
+    "task_id": "task2",
+    "video_duration": "46s",
+    "domain": "Games",
+    "sub_category": "Casual Game",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Emotion Change",
+    "question": "What changes occur in the girl's emotions in the video?",
+    "candidates": [
+      "A. From discouraged to excited.",
+      "B. From calm to excited.",
+      "C. From calm to discouraged.",
+      "D. From excited to calm."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "lFJblBlb::task0",
+    "video_id": "lFJblBlb",
+    "task_id": "task0",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Covers",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Recognition",
+    "question": "Is the sound of the flute louder than the sound of the piano?",
+    "candidates": [
+      "A. I am not sure.",
+      "B. Yes, the flute is louder.",
+      "C. No, the piano is louder.",
+      "D. No, both are equally loud."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "WVCNxHrI::task0",
+    "video_id": "WVCNxHrI",
+    "task_id": "task0",
+    "video_duration": "92s",
+    "domain": "Performance",
+    "sub_category": "Parodies",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human Emotions",
+    "question": "What is the apparent emotion of the white-clothed cat in the video?",
+    "candidates": [
+      "A. Happy.",
+      "B. Calm.",
+      "C. Angry.",
+      "D. Bored."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "QeCZwxHr::task1",
+    "video_id": "QeCZwxHr",
+    "task_id": "task1",
+    "video_duration": "45s",
+    "domain": "Performance",
+    "sub_category": "Storytime",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Attribute Reasoning",
+    "question": "Who is the short, black curly-haired man in the video most likely to have gone to the supermarket with?",
+    "candidates": [
+      "A. He is alone.",
+      "B. His friend.",
+      "C. His parents.",
+      "D. His father."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "zhSaWdPv::task1",
+    "video_id": "zhSaWdPv",
+    "task_id": "task1",
+    "video_duration": "62s",
+    "domain": "Tech & Science",
+    "sub_category": "Academic Lectures",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Causal Reasoning",
+    "question": "Why does the woman go cycling on the salt flats in the video?",
+    "candidates": [
+      "A. Because she wants to see how fast I can go with just two wheels and a battery.",
+      "B. Because her friends want to go.",
+      "C. Because it is part of a learning task assigned by the school.",
+      "D. Because her family wants to go."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "hIwjTYLc::task1",
+    "video_id": "hIwjTYLc",
+    "task_id": "task1",
+    "video_duration": "76s",
+    "domain": "Tech & Science",
+    "sub_category": "Tech Reviews",
+    "audio_class": [
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Object Counting",
+    "question": "How many sandbags can be seen in the video?",
+    "candidates": [
+      "A. Two.",
+      "B. One.",
+      "C. Zero.",
+      "D. Three."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "XWuxbcDK::task0",
+    "video_id": "XWuxbcDK",
+    "task_id": "task0",
+    "video_duration": "56s",
+    "domain": "Culture & Politics",
+    "sub_category": "Cultural Explainers",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Temporal Localization",
+    "question": "At what point in the video is the man swimming in the water?",
+    "candidates": [
+      "A. At the beginning of the video.",
+      "B. In the middle of the video.",
+      "C. Throughout the entire video.",
+      "D. At the end of the video."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "GXVWYASR::task1",
+    "video_id": "GXVWYASR",
+    "task_id": "task1",
+    "video_duration": "59s",
+    "domain": "Sports",
+    "sub_category": "Soccer",
+    "audio_class": [
+      "Speech"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human-object Interaction",
+    "question": "What does the player from Team White, wearing number 2, do with the water cup in the video?",
+    "candidates": [
+      "A. Pours water into a teammate's neck and feeds water to the teammate.",
+      "B. Pours water onto a teammate's hand and drinks water.",
+      "C. Pours water into a teammate's neck and drinks water.",
+      "D. Pours water onto the ground and drinks water."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "GeKVDdqj::task2",
+    "video_id": "GeKVDdqj",
+    "task_id": "task2",
+    "video_duration": "31s",
+    "domain": "Culture & Politics",
+    "sub_category": "Politics",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Counting",
+    "question": "How many times does the woman in red and green clothing say 'stop firing' in the video?",
+    "candidates": [
+      "A. Four.",
+      "B. Three.",
+      "C. Six.",
+      "D. Five."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "YvDzQAnH::task0",
+    "video_id": "YvDzQAnH",
+    "task_id": "task0",
+    "video_duration": "108s",
+    "domain": "Sports",
+    "sub_category": "Other Sports",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Event Recognition",
+    "question": "Which team won the match shown in the video?",
+    "candidates": [
+      "A. The U.S. team.",
+      "B. The international team.",
+      "C. It was a draw.",
+      "D. I am not sure."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "jzdbThgZ::task1",
+    "video_id": "jzdbThgZ",
+    "task_id": "task1",
+    "video_duration": "46s",
+    "domain": "Performance",
+    "sub_category": "Stand-up",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Action Counting",
+    "question": "How many times did the man in a black short-sleeved shirt cover his face?",
+    "candidates": [
+      "A. Two.",
+      "B. Three.",
+      "C. Four.",
+      "D. Five."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "hLaXEfNE::task0",
+    "video_id": "hLaXEfNE",
+    "task_id": "task0",
+    "video_duration": "40s",
+    "domain": "Daily Life",
+    "sub_category": "Nutrition & Health",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Attribute Recognition",
+    "question": "What fitness equipment is used in the video of the man exercising?",
+    "candidates": [
+      "A. A resistance band.",
+      "B. A treadmill.",
+      "C. A bench press rack.",
+      "D. A dumbbell."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "rDcsswVJ::task1",
+    "video_id": "rDcsswVJ",
+    "task_id": "task1",
+    "video_duration": "112s",
+    "domain": "Games",
+    "sub_category": "Role Playing Game",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Source Localization",
+    "question": "Who said in the video, \"It's not. I've got my orders. And now you have yours\"?",
+    "candidates": [
+      "A. A man wearing a black helmet.",
+      "B. A man wearing a skull mask.",
+      "C. A man wearing a vest with the American flag.",
+      "D. A man wearing a vest with the British flag."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "wIaZkXzf::task2",
+    "video_id": "wIaZkXzf",
+    "task_id": "task2",
+    "video_duration": "70s",
+    "domain": "Tech & Science",
+    "sub_category": "Software",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Text and Diagram Understanding",
+    "question": "What do the text and numbers inside the red box on the page displaying shopping methods represent?",
+    "candidates": [
+      "A. Represent the original price of 25.21, with a payment of 16.66 and a discount of 8.55.",
+      "B. Represent the original price of 22.21, with a payment of 16.66 and a discount of 5.55.",
+      "C. Represent the original price of 21.21, with a payment of 16.66 and a discount of 4.55.",
+      "D. Represent the original price of 23.21, with a payment of 16.66 and a discount of 6.55."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "RYmbMlyz::task1",
+    "video_id": "RYmbMlyz",
+    "task_id": "task1",
+    "video_duration": "95s",
+    "domain": "Sports",
+    "sub_category": "Football",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Relation Reasoning",
+    "question": "What is the likely occupation of a person wearing red clothing?",
+    "candidates": [
+      "A. A referee.",
+      "B. An audience member.",
+      "C. A soccer coach.",
+      "D. A journalist."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "tBTQfDVX::task2",
+    "video_id": "tBTQfDVX",
+    "task_id": "task2",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Covers",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Video Emotions",
+    "question": "What emotions are expressed by the music played in the video?",
+    "candidates": [
+      "A. Tense and fearful.",
+      "B. Calm and sorrowful.",
+      "C. Melancholy and oppressive.",
+      "D. Free-spirited and optimistic."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "wYKRfRNr::task0",
+    "video_id": "wYKRfRNr",
+    "task_id": "task0",
+    "video_duration": "108s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Scene Recognition",
+    "question": "What is the weather like during the fight scene in the ruins in the video?",
+    "candidates": [
+      "A. It is sunny.",
+      "B. It is rainy.",
+      "C. It is foggy.",
+      "D. It is overcast."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "QNdjTPvE::task0",
+    "video_id": "QNdjTPvE",
+    "task_id": "task0",
+    "video_duration": "114s",
+    "domain": "Tech & Science",
+    "sub_category": "Auto",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Anomaly Recognition",
+    "question": "What unusual behavior does the man wearing glasses display in the video?",
+    "candidates": [
+      "A. Holding a drill, he points at the man with a nose ring.",
+      "B. Holding a wrench, he points at the man with a nose ring.",
+      "C. Holding a phone, he points at the man with a nose ring.",
+      "D. Holding a motor, he points at the man with a nose ring."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "SbbeAnCD::task0",
+    "video_id": "SbbeAnCD",
+    "task_id": "task0",
+    "video_duration": "54s",
+    "domain": "Culture & Politics",
+    "sub_category": "Historical Analysis",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Audio Change",
+    "question": "Is there a change in the background sound in the video?",
+    "candidates": [
+      "A. I am not sure.",
+      "B. Yes.",
+      "C. No."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "aXKlhzgv::task0",
+    "video_id": "aXKlhzgv",
+    "task_id": "task0",
+    "video_duration": "73s",
+    "domain": "Film & TV",
+    "sub_category": "Short Films",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Object State Change",
+    "question": "What changes occur on the wall midway through the video?",
+    "candidates": [
+      "A. The wall shows no changes.",
+      "B. The wall turns black.",
+      "C. The entire wall collapses.",
+      "D. Part of the wall cracks."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "maNiUSOx::task2",
+    "video_id": "maNiUSOx",
+    "task_id": "task2",
+    "video_duration": "113s",
+    "domain": "Daily Life",
+    "sub_category": "DIY & Crafts",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Spatial Relation",
+    "question": "What is the position of the purple fabric relative to the woman in the video?",
+    "candidates": [
+      "A. Behind.",
+      "B. In front.",
+      "C. On the left.",
+      "D. On the right."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "ShWVlzGB::task0",
+    "video_id": "ShWVlzGB",
+    "task_id": "task0",
+    "video_duration": "88s",
+    "domain": "Daily Life",
+    "sub_category": "Camping",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Emotion Change",
+    "question": "What emotional changes does the man in the hoodie exhibit throughout the video?",
+    "candidates": [
+      "A. From excited to calm.",
+      "B. From calm to excited.",
+      "C. Consistently calm.",
+      "D. Consistently excited."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "HfpYwkJi::task0",
+    "video_id": "HfpYwkJi",
+    "task_id": "task0",
+    "video_duration": "63s",
+    "domain": "Film & TV",
+    "sub_category": "Short Films",
+    "audio_class": [
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Object Existence Recognition",
+    "question": "Does the video contain a stone?",
+    "candidates": [
+      "A. It is not clear.",
+      "B. None of the above.",
+      "C. Yes, it does.",
+      "D. No, it does not."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "bVsFUogL::task1",
+    "video_id": "bVsFUogL",
+    "task_id": "task1",
+    "video_duration": "25s",
+    "domain": "Film & TV",
+    "sub_category": "Movie Reviews",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human Emotions",
+    "question": "What is the emotional state of his companions upon learning that Deadpool is getting married?",
+    "candidates": [
+      "A. Sadness.",
+      "B. Anger.",
+      "C. Happiness.",
+      "D. Doubt."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "DxdbDgnm::task0",
+    "video_id": "DxdbDgnm",
+    "task_id": "task0",
+    "video_duration": "73s",
+    "domain": "Tech & Science",
+    "sub_category": "Artificial Intelligence",
+    "audio_class": [
+      "Speech"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Attribute Reasoning",
+    "question": "What is the detection accuracy of the equipment during peak hours?",
+    "candidates": [
+      "A. Very high.",
+      "B. Low.",
+      "C. High.",
+      "D. Very low."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "liYaHkhW::task2",
+    "video_id": "liYaHkhW",
+    "task_id": "task2",
+    "video_duration": "41s",
+    "domain": "Sports",
+    "sub_category": "Fishing",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Causal Reasoning",
+    "question": "Why does the man in the video repeatedly compare a fishing hook with white foam?",
+    "candidates": [
+      "A. To make the foam sink into the water.",
+      "B. To cut the foam to the appropriate length.",
+      "C. To trim the foam to the appropriate width.",
+      "D. To insert the fishing hook into the foam."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "yMhAdUta::task1",
+    "video_id": "yMhAdUta",
+    "task_id": "task1",
+    "video_duration": "53s",
+    "domain": "Daily Life",
+    "sub_category": "Cooking",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Event Sorting",
+    "question": "What is the cooking sequence shown in the video? (a) Beat the eggs (b) Mix the ingredients using a kitchen appliance (c) Cook and stir the boiling ingredients in the pot (d) Stir the materials by hand (e) Sift the flour (f) Sift the flour again.",
+    "candidates": [
+      "A. (E) (C) (D) (F) (A) (B).",
+      "B. (D) (A) (E) (C) (B) (F).",
+      "C. (A) (E) (C) (B) (F) (D).",
+      "D. (D) (E) (C) (B) (A) (F)."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "ipBErquQ::task1",
+    "video_id": "ipBErquQ",
+    "task_id": "task1",
+    "video_duration": "98s",
+    "domain": "Sports",
+    "sub_category": "Soccer",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Temporal Localization",
+    "question": "In which part of the video do the catcher and pitcher change their strategies?",
+    "candidates": [
+      "A. At the beginning of the video.",
+      "B. In the middle of the video.",
+      "C. No strategy change occurs.",
+      "D. At the end of the video."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "nlfaBeRz::task0",
+    "video_id": "nlfaBeRz",
+    "task_id": "task0",
+    "video_duration": "51s",
+    "domain": "Tech & Science",
+    "sub_category": "Tech Reviews",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human-object Interaction",
+    "question": "What did the man use to film the Thanksgiving video?",
+    "candidates": [
+      "A. Canon CCD.",
+      "B. M42-threaded lens.",
+      "C. Canon camera.",
+      "D. Phone."
+    ],
+    "answer": "B"
+  },
+  {
+    "uid": "ygcWTUrg::task0",
+    "video_id": "ygcWTUrg",
+    "task_id": "task0",
+    "video_duration": "79s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Counting",
+    "question": "How many times does a relatively long, piercing sound effect occur at the end of the video?",
+    "candidates": [
+      "A. Five times.",
+      "B. Six times.",
+      "C. Four times.",
+      "D. Three times."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "QRgUeIzo::task0",
+    "video_id": "QRgUeIzo",
+    "task_id": "task0",
+    "video_duration": "69s",
+    "domain": "Culture & Politics",
+    "sub_category": "Celebrity Interviews",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Hallucination",
+    "question": "How many goals did the person wearing the number 8 jersey score in the video?",
+    "candidates": [
+      "A. One.",
+      "B. Zero.",
+      "C. I am not sure.",
+      "D. Two."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "eLDjltll::task0",
+    "video_id": "eLDjltll",
+    "task_id": "task0",
+    "video_duration": "37s",
+    "domain": "Games",
+    "sub_category": "Role Playing Game",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Action Counting",
+    "question": "How many times does Spider-Man fall in the video?",
+    "candidates": [
+      "A. Once.",
+      "B. Zero times.",
+      "C. Three times.",
+      "D. Twice."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "IaLHTnTl::task1",
+    "video_id": "IaLHTnTl",
+    "task_id": "task1",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Covers",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Attribute Recognition",
+    "question": "What technique does the guitarist use in the video?",
+    "candidates": [
+      "A. Finger-picking.",
+      "B. Strumming.",
+      "C. Plucking strings.",
+      "D. Strumming with a plectrum."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "gifWfvVv::task0",
+    "video_id": "gifWfvVv",
+    "task_id": "task0",
+    "video_duration": "93s",
+    "domain": "Film & TV",
+    "sub_category": "Event Livestreams",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Source Localization",
+    "question": "Who just said, \"Roses are red, and there are impurities in my car's oil\"?",
+    "candidates": [
+      "A. A man with white hair.",
+      "B. A man wearing a gray shirt.",
+      "C. A man wearing a headscarf.",
+      "D. A bald man."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "exCyzNQV::task0",
+    "video_id": "exCyzNQV",
+    "task_id": "task0",
+    "video_duration": "70s",
+    "domain": "Tech & Science",
+    "sub_category": "Auto",
+    "audio_class": [
+      "Speech"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human Interaction",
+    "question": "In the video, what did the young girl do when the woman took out her phone?",
+    "candidates": [
+      "A. The young girl shouts at the woman.",
+      "B. The young girl looks at the woman.",
+      "C. The young girl does nothing.",
+      "D. The young girl stops the woman with her hand."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "DlZzwIzS::task1",
+    "video_id": "DlZzwIzS",
+    "task_id": "task1",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Covers",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Relation Reasoning",
+    "question": "What is the relationship between the cello and the piano in the video?",
+    "candidates": [
+      "A. The cello and piano both share the roles of bass and treble, with the cello leading the melody.",
+      "B. The cello plays the treble while the piano plays the bass, with the cello leading the melody.",
+      "C. The cello and piano both share the roles of bass and treble, with the piano leading the melody.",
+      "D. The piano plays the treble while the cello plays the bass, with the piano leading the melody."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "PIRxLdhc::task1",
+    "video_id": "PIRxLdhc",
+    "task_id": "task1",
+    "video_duration": "105s",
+    "domain": "Sports",
+    "sub_category": "Other Sports",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Video Emotions",
+    "question": "What is the overall emotion conveyed in the video?",
+    "candidates": [
+      "A. Anxiety.",
+      "B. Anger.",
+      "C. Sadness.",
+      "D. Calmness."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "PuzSTnxO::task1",
+    "video_id": "PuzSTnxO",
+    "task_id": "task1",
+    "video_duration": "40s",
+    "domain": "Games",
+    "sub_category": "FPS Game",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Scene Recognition",
+    "question": "In what scenario can players use the skill of the exotic chest armor?",
+    "candidates": [
+      "A. On a rock.",
+      "B. Under a pot.",
+      "C. Underwater.",
+      "D. On top of a bridge."
+    ],
+    "answer": "B"
+  }
+]

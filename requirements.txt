@@ -1,0 +1,6 @@
+# The current code (loader, split creation, validation, inspection) uses only
+# the Python standard library. No third-party packages are required yet.
+# Developed with Python 3.14 (requires >= 3.10 for `X | Y` type hints).
+#
+# Model/API dependencies (e.g. for Gemini via the CMU AI Gateway) will be
+# added when evaluation is implemented.

@@ -1,0 +1,267 @@
+[
+  {
+    "uid": "pONGpJvw::task2",
+    "video_id": "pONGpJvw",
+    "task_id": "task2",
+    "video_duration": "35s",
+    "domain": "Sports",
+    "sub_category": "Basketball",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Action Counting",
+    "question": "How many times are the passes made in the video?",
+    "candidates": [
+      "A. One.",
+      "B. Three.",
+      "C. Zero.",
+      "D. Two."
+    ],
+    "answer": "A"
+  },
+  {
+    "uid": "uYczFocm::task0",
+    "video_id": "uYczFocm",
+    "task_id": "task0",
+    "video_duration": "70s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Relation Reasoning",
+    "question": "In the last scene of the video, what is the relationship between the man in the black suit and Peter?",
+    "candidates": [
+      "A. They are teacher and student.",
+      "B. They are father and son.",
+      "C. They are colleagues.",
+      "D. They are friends."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "QJDFnwrm::task0",
+    "video_id": "QJDFnwrm",
+    "task_id": "task0",
+    "video_duration": "60s",
+    "domain": "Music",
+    "sub_category": "Walkthroughs",
+    "audio_class": [
+      "Music"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Audio Change",
+    "question": "What changes occur in the pitch of the music in the video?",
+    "candidates": [
+      "A. It remains gentle throughout.",
+      "B. It remains urgent throughout.",
+      "C. It gradually speeds up from a slow pace.",
+      "D. It slows down from a fast pace."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "fAxVqEIX::task0",
+    "video_id": "fAxVqEIX",
+    "task_id": "task0",
+    "video_duration": "108s",
+    "domain": "Daily Life",
+    "sub_category": "Cooking",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Object Existence Recognition",
+    "question": "Does the video contain curry?",
+    "candidates": [
+      "A. None of the above.",
+      "B. Yes, it does.",
+      "C. I am not sure.",
+      "D. No, it does not."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "LSILdqrI::task0",
+    "video_id": "LSILdqrI",
+    "task_id": "task0",
+    "video_duration": "34s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Event Sorting",
+    "question": "In what order do the events in the video occur?",
+    "candidates": [
+      "A. Black animals are discovered, black animals approach to attack, white squirrels are knocked down, white squirrels sing in space, white squirrels successfully counterattack black animals.",
+      "B. Black animals are discovered, black animals approach to attack, white squirrels are knocked down, white squirrels successfully counterattack black animals, white squirrels sing in space.",
+      "C. White squirrels are knocked down, white squirrels sing in space, white squirrels successfully counterattack black animals, black animals are discovered, black animals approach to attack.",
+      "D. White squirrels sing in space, discover black animals, black animals approach to attack, white squirrels are knocked down, white squirrels successfully counterattack black animals."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "HIWyvwld::task0",
+    "video_id": "HIWyvwld",
+    "task_id": "task0",
+    "video_duration": "25s",
+    "domain": "Film & TV",
+    "sub_category": "Event Livestreams",
+    "audio_class": [
+      "Speech"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Hallucination",
+    "question": "Does the video contain any footage of cosmetics?",
+    "candidates": [
+      "A. None of the above.",
+      "B. Yes, it does.",
+      "C. I do not know.",
+      "D. No, it does not."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "dcSdBPEm::task2",
+    "video_id": "dcSdBPEm",
+    "task_id": "task2",
+    "video_duration": "38s",
+    "domain": "Film & TV",
+    "sub_category": "Film Trailers",
+    "audio_class": [
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Human Interaction",
+    "question": "At the beginning of the video, the person wearing black clothes is fighting with several people wearing red clothes. How many people in red clothes are involved?",
+    "candidates": [
+      "A. 3.",
+      "B. 4.",
+      "C. 1.",
+      "D. 2."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "IbwpPyJk::task1",
+    "video_id": "IbwpPyJk",
+    "task_id": "task1",
+    "video_duration": "59s",
+    "domain": "Tech & Science",
+    "sub_category": "Space Missions",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Reasoning",
+    "task_type": "Temporal Prediction",
+    "question": "In the video, if the airplane's landing gear malfunctions during landing, what is the most likely outcome?",
+    "candidates": [
+      "A. The plane experiences a bumpy and erratic landing.",
+      "B. The correct outcome is uncertain.",
+      "C. The plane is unable to complete the landing.",
+      "D. The plane achieves a normal, perfect landing."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "MwapBRIc::task3",
+    "video_id": "MwapBRIc",
+    "task_id": "task3",
+    "video_duration": "68s",
+    "domain": "Games",
+    "sub_category": "Role Playing Game",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Audio Recognition",
+    "question": "What type of music appears in the video?",
+    "candidates": [
+      "A. Heavy metal music appears.",
+      "B. Rock music appears.",
+      "C. Pop music appears.",
+      "D. Classical music appears."
+    ],
+    "answer": "D"
+  },
+  {
+    "uid": "OHnvoMwt::task1",
+    "video_id": "OHnvoMwt",
+    "task_id": "task1",
+    "video_duration": "50s",
+    "domain": "Games",
+    "sub_category": "Casual Game",
+    "audio_class": [
+      "Speech",
+      "Event"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Object Counting",
+    "question": "How many cards appear in the video?",
+    "candidates": [
+      "A. Forty-two.",
+      "B. Twenty-two.",
+      "C. Forty-one.",
+      "D. Forty."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "RMofQasT::task0",
+    "video_id": "RMofQasT",
+    "task_id": "task0",
+    "video_duration": "57s",
+    "domain": "Daily Life",
+    "sub_category": "Cooking",
+    "audio_class": [
+      "Speech",
+      "Music"
+    ],
+    "task_domain": "Recognition",
+    "task_type": "Event Recognition",
+    "question": "How many milliliters of soda does the man pour into the measuring cup?",
+    "candidates": [
+      "A. 60 ml.",
+      "B. 40 ml.",
+      "C. 45 ml.",
+      "D. 50 ml."
+    ],
+    "answer": "C"
+  },
+  {
+    "uid": "drCNbTDR::task1",
+    "video_id": "drCNbTDR",
+    "task_id": "task1",
+    "video_duration": "119s",
+    "domain": "Culture & Politics",
+    "sub_category": "Drawing Tutorials",
+    "audio_class": [
+      "Speech",
+      "Music",
+      "Event"
+    ],
+    "task_domain": "Understanding",
+    "task_type": "Text and Diagram Understanding",
+    "question": "In which step does the man draw the cow's eyes in the video?",
+    "candidates": [
+      "A. Step five.",
+      "B. Step three.",
+      "C. Step four.",
+      "D. Step two."
+    ],
+    "answer": "B"
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "dataset_name": "WorldSense",
+  "dataset_source": "WorldSense benchmark (Hong et al., 2025, arXiv:2502.04326), official release on Hugging Face: honglyhly/WorldSense; QA annotations file worldsense_qa.json",
+  "dataset_file": "data/worldsense/worldsense_qa.json",
+  "dataset_sha256": "e2fa25f1a43302fc9a562029c932d95fba7f984c6862e9531cf6f4abfbdce063",
+  "dev_split_file": "configs/dev_ids.json",
+  "dev_split_sha256": "07db5b2e27f52405d0987ab9b12320063671304cf1613e8a345321ae29d7cddf",
+  "test_split_file": "configs/test_ids.json",
+  "test_split_sha256": "91d219b01ae267d3619a957b547dfe2d063c07245b8b3ce6756f8feb48a866bd",
+  "split_frozen": true,
+  "split_script": "scripts/create_split.py",
+  "seed": 42,
+  "total_examples": 60,
+  "dev_size": 12,
+  "test_size": 48,
+  "max_video_duration_seconds": 120,
+  "one_qa_per_video": true,
+  "split_by_video": true,
+  "num_task_types_covered": 26,
+  "planned_conditions": [
+    {
+      "id": "full",
+      "description": "video + raw audio"
+    },
+    {
+      "id": "video_only",
+      "description": "video with audio removed"
+    },
+    {
+      "id": "audio_only",
+      "description": "raw audio only"
+    },
+    {
+      "id": "video_subtitle",
+      "description": "silent video + official WorldSense subtitle"
+    },
+    {
+      "id": "subtitle_only",
+      "description": "official WorldSense subtitle only"
+    },
+    {
+      "id": "question_only",
+      "description": "question + answer choices only"
+    }
+  ],
+  "notes": [
+    "video_caption is metadata only and must NEVER be used as model input (prompt or any other evaluation input); it describes the video content and would leak information.",
+    "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts.",
+    "The test split must never be used for prompt tuning; tune on dev only.",
+    "Planned primary baseline model: Gemini 2.5 Flash-Lite via the CMU AI Gateway (not yet implemented)."
+  ]
+}
