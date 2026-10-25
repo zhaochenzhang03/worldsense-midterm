@@ -83,6 +83,48 @@ python -m scripts.validate_split       # check protocol invariants + manifest ha
 
 `validate_split` exits with a nonzero status if any invariant fails.
 
+## Evaluation harness
+
+The frozen settings are in `configs/eval_config.json`:
+- model: Gemini 2.5 Flash-Lite via the CMU AI Gateway
+- temperature 0, prompt `v1`
+- the six conditions
+- resume on, with results saved immediately
+
+**The Gateway transport is not implemented yet.** `src/model_client.py` refuses to
+send requests until the Gateway interface, model identifier and credentials
+are specified. Credentials come only from the environment variables named in
+the config and are never logged or saved.
+
+- `src/prompting.py`: one prompt builder for every condition. The instruction,
+  question and choices are identical across conditions. The subtitle conditions
+  add a `Subtitles:` block with the normalized official subtitle. The prompt
+  never names the condition or a missing modality, and never uses
+  `video_caption`.
+- `src/answer_parser.py`: maps raw responses to a letter with `parse_status`
+  `exact`, `normalized`, `ambiguous` or `invalid`. It never guesses between
+  conflicting letters. Tests: `python -m unittest tests.test_answer_parser`.
+- `scripts/run_evaluation.py`: runs on dev by default.
+  - `--split test` exits before any API call unless `--allow-test` is also given.
+  - Each call is appended to `outputs/<split>/<condition>.jsonl` and fsynced
+    right away.
+  - Pairs `(uid, condition, model, prompt_version)` that already succeeded are
+    skipped, and successes are never duplicated. Failed pairs are re-attempted
+    only with `--retry-failed`. There are no automatic retries.
+- `scripts/validate_evaluation.py`: offline checks on saved outputs:
+  - only frozen UIDs, in the correct split
+  - no duplicate successes
+  - prompts match the frozen `v1` prompt
+  - no `video_caption`, no API key
+  - valid parse statuses
+  - test outputs only together with a formal-run marker
+
+```bash
+python -m scripts.run_evaluation --all-conditions --limit 2 --dry-run   # no API calls
+python -m scripts.run_evaluation --condition full --uids <dev uid>        # real call (dev)
+python -m scripts.validate_evaluation
+```
+
 ## Repository layout
 
 ```
@@ -104,6 +146,13 @@ configs/video_archive_map.json  video_id -> archive
 configs/media_manifest.json     original media hashes
 configs/media_stream_metadata.json  source stream metadata
 configs/variant_manifest.json   variant hashes, durations, codecs
+configs/eval_config.json        frozen evaluation settings (no secrets)
+src/prompting.py                single prompt builder for all conditions
+src/answer_parser.py            response -> letter + parse_status
+src/model_client.py             provider abstraction (Gateway isolated)
+scripts/run_evaluation.py       resumable, immediately-saving runner
+scripts/validate_evaluation.py  offline checks on saved outputs
+tests/test_answer_parser.py     parser regression tests
 configs/dev_ids.json            frozen dev split (12)
 configs/test_ids.json           frozen test split (48)
 configs/experiment_manifest.json  hashes, protocol parameters, conditions

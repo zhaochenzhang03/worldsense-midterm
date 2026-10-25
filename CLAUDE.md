@@ -48,6 +48,14 @@ modality necessity and substitutability on the WorldSense benchmark. Read
 - Analysis must **run offline from saved outputs** whenever possible, without new
   API calls.
 - Do not make API calls or download media unless the user asked for it.
+- The harness implements these rules: `scripts/run_evaluation.py` (dev by
+  default; test needs `--split test --allow-test`), `src/prompting.py` (the one
+  frozen `v1` prompt), `src/answer_parser.py`, and `src/model_client.py` (all
+  Gateway-specific code goes in `CMUGatewayClient` only). Never add automatic
+  retries that could duplicate a successful call. Never print, log, store or
+  commit API keys. Run `python -m scripts.validate_evaluation` after any run.
+- Never invent a Gateway endpoint, auth scheme or model identifier. Use only
+  what the user or the official Gateway documentation provides.
 
 ## Conventions
 

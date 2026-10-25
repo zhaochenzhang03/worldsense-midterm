@@ -125,5 +125,15 @@
     "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts. They are normalized deterministically (see subtitles.normalization) and bracketed non-speech tags are kept.",
     "The test split must never be used for prompt tuning; tune on dev only.",
     "Planned primary baseline model: Gemini 2.5 Flash-Lite via the CMU AI Gateway (not yet implemented)."
-  ]
+  ],
+  "evaluation": {
+    "config": "configs/eval_config.json",
+    "prompt_version": "v1",
+    "prompt_builder": "src/prompting.py",
+    "answer_parser": "src/answer_parser.py",
+    "runner": "scripts/run_evaluation.py",
+    "validator": "scripts/validate_evaluation.py",
+    "outputs": "outputs/<split>/<condition>.jsonl (gitignored)",
+    "status": "harness built; CMU AI Gateway transport not yet specified, no API calls made"
+  }
 }
