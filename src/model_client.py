@@ -99,14 +99,13 @@ class ModelClient:
 
 class CMUGatewayClient(ModelClient):
     """
-    CMU AI Gateway transport.
+    CMU AI Gateway transport (LiteLLM, OpenAI-compatible).
 
-    The Gateway's API style (endpoint path, auth header, request
-    schema, how video/audio parts are encoded, model identifier) is
-    not yet specified, so this client refuses to send anything
-    rather than guess. Credentials are read from environment
-    variables named in configs/eval_config.json and are never
-    logged or stored.
+    The Gateway model identifier and the request format for
+    video/audio parts are not yet specified, so this client refuses
+    to send anything rather than guess. The API key is read from the
+    environment variable named in configs/eval_config.json and is
+    never logged or stored.
     """
 
     provider = "cmu_ai_gateway"
@@ -117,22 +116,17 @@ class CMUGatewayClient(ModelClient):
         self.gateway_model_id = gateway_model_id
 
     def check_ready(self) -> None:
-        missing = [
-            name
-            for name in (
-                self.gateway_config["base_url_env_var"],
-                self.gateway_config["api_key_env_var"],
-            )
-            if not os.environ.get(name)
-        ]
         problems = []
 
-        if missing:
-            problems.append(f"environment variables not set: {missing}")
-        if not self.gateway_config.get("interface"):
-            problems.append(
-                "gateway.interface is not specified in configs/eval_config.json"
-            )
+        api_key_env_var = self.gateway_config["api_key_env_var"]
+        if not os.environ.get(api_key_env_var):
+            problems.append(f"environment variable {api_key_env_var} not set")
+
+        for key in ("base_url", "interface", "media_request_format"):
+            if not self.gateway_config.get(key):
+                problems.append(
+                    f"gateway.{key} is not specified in configs/eval_config.json"
+                )
         if not self.gateway_model_id:
             problems.append(
                 "model.gateway_model_id is not specified in configs/eval_config.json"

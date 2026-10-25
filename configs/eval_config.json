@@ -11,10 +11,13 @@
     "temperature": 0
   },
   "gateway": {
-    "interface": null,
-    "interface_note": "Gateway API style (endpoint path, request schema, media encoding) is not yet specified. src/model_client.py refuses to send requests until it is.",
-    "base_url_env_var": "CMU_AI_GATEWAY_BASE_URL",
-    "api_key_env_var": "CMU_AI_GATEWAY_API_KEY"
+    "base_url": "https://ai-gateway.andrew.cmu.edu",
+    "platform": "LiteLLM",
+    "interface": "openai_compatible",
+    "auth": "standard OpenAI-compatible API key (sent per the OpenAI client convention); the key itself is read only from the environment variable below and never stored",
+    "api_key_env_var": "CMU_AI_GATEWAY_API_KEY",
+    "media_request_format": null,
+    "media_request_format_note": "How video/mp4 and audio/m4a parts must be encoded in an OpenAI-compatible request through this LiteLLM Gateway is not yet specified. src/model_client.py refuses to send requests until it is."
   },
   "conditions": [
     "full",
