@@ -1,0 +1,1212 @@
+{
+  "description": "Deterministic modality variants of the frozen 60 WorldSense videos (scripts/create_modality_variants.py). video_subtitle reuses the video_only file.",
+  "ffmpeg_version": "ffmpeg version 9.0.2",
+  "duration_tolerance_seconds": 0.1,
+  "commands": {
+    "video_only": "ffmpeg -nostdin -v error -i INPUT -map 0:v:0 -c:v copy -an -map_metadata -1 -map_chapters -1 -sn -dn -fflags +bitexact -flags:v +bitexact -f mp4 OUTPUT",
+    "audio_only": "ffmpeg -nostdin -v error -i INPUT -map 0:a:0 -c:a copy -vn -map_metadata -1 -map_chapters -1 -sn -dn -fflags +bitexact -flags:a +bitexact -f ipod OUTPUT"
+  },
+  "num_videos": 60,
+  "videos": [
+    {
+      "video_id": "pONGpJvw",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/pONGpJvw.mp4",
+      "original_sha256": "e0d1f9f218d3aadea4ab8877d76d071a0432bf0a29fe50de0d978c6f3f858670",
+      "original_duration": 35.92,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/pONGpJvw.mp4",
+      "video_only_sha256": "78fc91ea79da2c27153ac7897ce86a69c82b6926e88b572e8068bd47fbd0f3e9",
+      "video_only_duration": 35.92,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/pONGpJvw.m4a",
+      "audio_only_sha256": "9f14fc110939ca7266599e30006aa12db4deedeb4405e07c88d968fd64926827",
+      "audio_only_duration": 35.92,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "uYczFocm",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/uYczFocm.mp4",
+      "original_sha256": "e2574e72bb161b52aafb171eaf4a0ae3597280d5f432f4d49e585b1c9f447354",
+      "original_duration": 70.100083,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/uYczFocm.mp4",
+      "video_only_sha256": "66251fef96982c6ef1c85451934c3051dea398be8afed01b52ea9c24f96a6abc",
+      "video_only_duration": 70.100083,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/uYczFocm.m4a",
+      "audio_only_sha256": "e50cd122578bca4f55507a7cb9db491ad3764d3a495ea29951c751c9c7ef3fa5",
+      "audio_only_duration": 70.07,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "QJDFnwrm",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/QJDFnwrm.mp4",
+      "original_sha256": "3b30184d8e9fde5101af1d804d5458dda28bb0b1488a814d842c89456bbc7a57",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/QJDFnwrm.mp4",
+      "video_only_sha256": "aacdb7ca761ffee26ae2f4e1a8c0592557a594620c91364d46b96684ce69e8e0",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/QJDFnwrm.m4a",
+      "audio_only_sha256": "6ada44409f859e6d1159b337cd6130d5ad94f65398621f7e461210965762c443",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "fAxVqEIX",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/fAxVqEIX.mp4",
+      "original_sha256": "9cf1bd51009b0eb5186ab6e6dfb9e0fe268df97b80d81d13e6d122fc756a795b",
+      "original_duration": 108.842176,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/fAxVqEIX.mp4",
+      "video_only_sha256": "9712f150098f36940b09ba5c3893d0844ee9001d2596d99f5c04dcaf218362a7",
+      "video_only_duration": 108.842176,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/fAxVqEIX.m4a",
+      "audio_only_sha256": "997f66ced8dc32d50691d20478a32eb15dcb8f9e57a82c6e9d829a7890a8fcac",
+      "audio_only_duration": 108.841995,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "LSILdqrI",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/LSILdqrI.mp4",
+      "original_sha256": "2d3cbe4a10fb5130cc5d388321903cc06e70c4227ae539ab37422bfcb359381a",
+      "original_duration": 34.968302,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/LSILdqrI.mp4",
+      "video_only_sha256": "72cefc20d8aba883d0ffb40541593a84b47b5937b0d906cc512f13e14a5da228",
+      "video_only_duration": 34.968302,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/LSILdqrI.m4a",
+      "audio_only_sha256": "ea2296a7846f5266bc44aa2aff1e35531413a21ac9d432f94e0e76abc33c554a",
+      "audio_only_duration": 34.935011,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "HIWyvwld",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/HIWyvwld.mp4",
+      "original_sha256": "18a929c72151b988d0bfc89f2066435812e1fe429ababa835f4166be45698a91",
+      "original_duration": 25.859193,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/HIWyvwld.mp4",
+      "video_only_sha256": "b40e169ef5b5ca2db63816cc21f65f72330391b3c851956b24f571f7f48d7532",
+      "video_only_duration": 25.859193,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/HIWyvwld.m4a",
+      "audio_only_sha256": "1ed1f93ed27ca5f0d31534e5c715760f8894d0f5070b5798b03b3563a08279aa",
+      "audio_only_duration": 25.826009,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "dcSdBPEm",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/dcSdBPEm.mp4",
+      "original_sha256": "d89836bc0a01a15acdaa47dbfd2cafeeef9600bf67239802b0e15c64425f232e",
+      "original_duration": 38.066667,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/dcSdBPEm.mp4",
+      "video_only_sha256": "c52bc6ba6c1f50c5b2807471b1111589c369eae93ee113ada15bae10e468cb0d",
+      "video_only_duration": 38.066667,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/dcSdBPEm.m4a",
+      "audio_only_sha256": "2e29e6deb7d3366ff6ace8371b28310c0c18244e3cc7dd73bace4608f59830d8",
+      "audio_only_duration": 38.033991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "IbwpPyJk",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/IbwpPyJk.mp4",
+      "original_sha256": "a3ef1aee76d7002c42e3d2d2a0e17f1d7dd8352f266f020fca870f553b8e6197",
+      "original_duration": 59.96,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/IbwpPyJk.mp4",
+      "video_only_sha256": "9dad6c4c66a55a58f5bc44de41591584285e99db06bc0ab58baf667676ed0233",
+      "video_only_duration": 59.96,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/IbwpPyJk.m4a",
+      "audio_only_sha256": "07dcc4f36be3273960d588ed2473e47c33b60e09ce68c8f99e769994f1557ee4",
+      "audio_only_duration": 59.96,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "MwapBRIc",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/MwapBRIc.mp4",
+      "original_sha256": "dd80b833913dd6cfa46673e9fc812bc5cf812f4cba1607e54b08ea10aa82f6ec",
+      "original_duration": 68.7,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/MwapBRIc.mp4",
+      "video_only_sha256": "4aa4ce8c8b416c46da9e1409a6f0ef82f89dcb4878aa4ae3ea696ba89ddc7c24",
+      "video_only_duration": 68.7,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/MwapBRIc.m4a",
+      "audio_only_sha256": "f5fa1eaf6c95f5c3fbc322b482f6f9ad69e3726b4d918a5468ea95d5e2563876",
+      "audio_only_duration": 68.7,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "OHnvoMwt",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/OHnvoMwt.mp4",
+      "original_sha256": "b4bccbc88a62dae3446e1615349f639fe287be34205b9846eea8ff93d7ccb81e",
+      "original_duration": 50.35035,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/OHnvoMwt.mp4",
+      "video_only_sha256": "ad378d1cce0e52a0f1f555e66a5da1eec779339ab3b0220f5d5e27d39c6633b6",
+      "video_only_duration": 50.35035,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/OHnvoMwt.m4a",
+      "audio_only_sha256": "4d3af26d09d22ea575526537a1ff3424b61b5f591b4450c999123a4d584f7e60",
+      "audio_only_duration": 50.317007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "RMofQasT",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/RMofQasT.mp4",
+      "original_sha256": "90addc9aadc57a3f40a8124d6318422fbc3c0e2bb7205276a46232df2936fa21",
+      "original_duration": 57.56,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/RMofQasT.mp4",
+      "video_only_sha256": "7d36e32b7460010d329faa148e1638f87db4f3aaa743be76b5ca754ecf3d6786",
+      "video_only_duration": 57.56,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/RMofQasT.m4a",
+      "audio_only_sha256": "6d7d4356988053a9b3a2678dbaa0afd1b9a7264776a3734b9adc0d7d7a617c1a",
+      "audio_only_duration": 57.56,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "drCNbTDR",
+      "split": "dev",
+      "original_path": "data/worldsense/videos/drCNbTDR.mp4",
+      "original_sha256": "9ef29d782ef3545a69815e94abc9b2a41101a91161eb5c407453fb67aab523ca",
+      "original_duration": 119.052386,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/drCNbTDR.mp4",
+      "video_only_sha256": "621b4c7392c2e4337cca034c37307874446cc08856a1ed80b3b2c1ee521c889d",
+      "video_only_duration": 119.052386,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/drCNbTDR.m4a",
+      "audio_only_sha256": "c336308a999bc761919eddbe4709075f27c3d91ada3703942543a41ab248c300",
+      "audio_only_duration": 119.019002,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "mDwMBvoz",
+      "split": "test",
+      "original_path": "data/worldsense/videos/mDwMBvoz.mp4",
+      "original_sha256": "52f8d86a3483dd58c1a85040d42a14f7de8ee736dfe2f034db28d58272f4bbfd",
+      "original_duration": 119.8,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/mDwMBvoz.mp4",
+      "video_only_sha256": "2141fa4374be1c42e29b50838f32ce6ee4dd93a44a9e827f0fbe8f490c71b696",
+      "video_only_duration": 119.8,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/mDwMBvoz.m4a",
+      "audio_only_sha256": "42acaf09198ee2e4a0c6e14f7ddfe81b57098bef6c02d2e6097883036a280fad",
+      "audio_only_duration": 119.76,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "CrOuXLhe",
+      "split": "test",
+      "original_path": "data/worldsense/videos/CrOuXLhe.mp4",
+      "original_sha256": "f6e1a9ca132c0ebb6defa64ee381acd8210c3b4eb07d6a4007242ea9a5f40abc",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/CrOuXLhe.mp4",
+      "video_only_sha256": "581f321038e0cd637bac69e6fadb477823840fb6fd73e9c23f728efa15adc418",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/CrOuXLhe.m4a",
+      "audio_only_sha256": "330ad48a2d9a5def47a1ac84c0ded833ded7459375d52f29028c8a6a2995bbcb",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "ndMGQClm",
+      "split": "test",
+      "original_path": "data/worldsense/videos/ndMGQClm.mp4",
+      "original_sha256": "c20528c66f70a5b279094408aa6e1e0722381bbe128b14be5e1aafdf2c89659b",
+      "original_duration": 44.1,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/ndMGQClm.mp4",
+      "video_only_sha256": "7753ffc83e6c86bedc35671dd3a31618dec94a2419ec8ed835338403f16547b4",
+      "video_only_duration": 44.1,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/ndMGQClm.m4a",
+      "audio_only_sha256": "d1ffd734c76cae0e8a12ed78025200c2cbef4b6f0faec3ddb06d6c71846b1da3",
+      "audio_only_duration": 44.07,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "vEwHYQtH",
+      "split": "test",
+      "original_path": "data/worldsense/videos/vEwHYQtH.mp4",
+      "original_sha256": "50b4e67d6230efe67df7a7d49dce31c8d99b7b0c8237b1728fad14cc6859c12d",
+      "original_duration": 48.16,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/vEwHYQtH.mp4",
+      "video_only_sha256": "97aaaf7fc7694dfcd6f000cb1ca38025a60f9f3e9a8038c1b053832828585a2f",
+      "video_only_duration": 48.16,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/vEwHYQtH.m4a",
+      "audio_only_sha256": "459b342dc91d35564cd1bb0918d3bd02fd9f93266c5837bc7fc08bdbc51471b4",
+      "audio_only_duration": 48.16,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "kuhPQczc",
+      "split": "test",
+      "original_path": "data/worldsense/videos/kuhPQczc.mp4",
+      "original_sha256": "9ccd1dfe551bed31ec090b16d7bc85983810d7a5892ab0ae816fd8aa444d4825",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/kuhPQczc.mp4",
+      "video_only_sha256": "20c5d4aaccfee994c7cbc16908bb2935f918b83dad2ee933254c0a8e5eb3fd43",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/kuhPQczc.m4a",
+      "audio_only_sha256": "7768b5e15ea8fe068211b0c4d949f6e866776240e6fc22f0d588d01ef265dfc5",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "wCZkPkru",
+      "split": "test",
+      "original_path": "data/worldsense/videos/wCZkPkru.mp4",
+      "original_sha256": "f086eb017a3b8afe1e12af1e2b7a3a16ddbb03ad547565de470656dc90e5df99",
+      "original_duration": 87.620954,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/wCZkPkru.mp4",
+      "video_only_sha256": "5654902acefdc4876a7609fdad50e7bae4d18fece58d907735ac6800ffb16806",
+      "video_only_duration": 87.620954,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/wCZkPkru.m4a",
+      "audio_only_sha256": "21ebf5e7560f14dbe08a3fb4a5dda77f31195879013eea53ccb8de999046df38",
+      "audio_only_duration": 87.588005,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "tkZqcJYF",
+      "split": "test",
+      "original_path": "data/worldsense/videos/tkZqcJYF.mp4",
+      "original_sha256": "b66dbd3dbee776ff1e157c31fe682e2f5f2331315054011fcea91aa8b83812c7",
+      "original_duration": 43.7,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/tkZqcJYF.mp4",
+      "video_only_sha256": "d2d56e30522de7c6e2f41d9d62cc9805b5a4d5be4191bd4d62100b97b602c575",
+      "video_only_duration": 43.7,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/tkZqcJYF.m4a",
+      "audio_only_sha256": "35f143dd1a2ec613cb98346d76b26d3e88d7d9a996eafce840f38352c2ab75f3",
+      "audio_only_duration": 43.667007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "Kauavmph",
+      "split": "test",
+      "original_path": "data/worldsense/videos/Kauavmph.mp4",
+      "original_sha256": "07a3a93355b8c6b38d7a5b204f779eff5c8f4fd9f6ec443b70ccabbd2f30ca9f",
+      "original_duration": 82.382382,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/Kauavmph.mp4",
+      "video_only_sha256": "5d86bd8781b7838d3964d0339ddf39cb89e58603600a8cb5493653653c6f9898",
+      "video_only_duration": 82.382382,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/Kauavmph.m4a",
+      "audio_only_sha256": "a9d5ed3b5684e95aee7b45c32baf05a49d281600d434ba91cdab5e8729460092",
+      "audio_only_duration": 82.349002,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "tTHbptSD",
+      "split": "test",
+      "original_path": "data/worldsense/videos/tTHbptSD.mp4",
+      "original_sha256": "b490807b2fc629b45d78ea0c221c54c1732b2d9884a5d4e5e8dfa1ba99ba1520",
+      "original_duration": 107.941275,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/tTHbptSD.mp4",
+      "video_only_sha256": "096d30a433671da77ba1843ce6f7a58ab31459816d29281652b88a3f3c0ae6de",
+      "video_only_duration": 107.941275,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/tTHbptSD.m4a",
+      "audio_only_sha256": "ebabc40ec504deedccace2ec78d3e70932a23c989b509335a17e857a7c330ffd",
+      "audio_only_duration": 107.908005,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "IIsRSTmT",
+      "split": "test",
+      "original_path": "data/worldsense/videos/IIsRSTmT.mp4",
+      "original_sha256": "aa06c36197233e7114e0c52f7430e931189abcdb6785cc957202b9d5319879c6",
+      "original_duration": 39.472806,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/IIsRSTmT.mp4",
+      "video_only_sha256": "7be89adaf10de6a0f838a5f09a89e417057206e20b0e641ab5ff7ba1ac44fae1",
+      "video_only_duration": 39.472806,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/IIsRSTmT.m4a",
+      "audio_only_sha256": "5ca0b5b8e2b6687fb873a0bc1b490e51c0c6d25064170b839ad1f902d6ba9c7b",
+      "audio_only_duration": 39.44,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "BVHuJecL",
+      "split": "test",
+      "original_path": "data/worldsense/videos/BVHuJecL.mp4",
+      "original_sha256": "27b5251afdfd82fdafdaccd3a262a4ebdd3d1be42efea1ab09014ed11c20a78e",
+      "original_duration": 46.033333,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/BVHuJecL.mp4",
+      "video_only_sha256": "15ae9f4387adfd830770eb8358e14cccb078259b3752b0ce498654ab408d86d9",
+      "video_only_duration": 46.033333,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/BVHuJecL.m4a",
+      "audio_only_sha256": "fb726bd32d3d9ae2a96612e5c8d3b0524c749a2c9975f2bcfb6b82905a02efc4",
+      "audio_only_duration": 46.032993,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "lFJblBlb",
+      "split": "test",
+      "original_path": "data/worldsense/videos/lFJblBlb.mp4",
+      "original_sha256": "1385482bfe123eed6da9b9665eff98e5c4c1692345f20104eda0bd930ccf7832",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/lFJblBlb.mp4",
+      "video_only_sha256": "d3eba23b701fd8aa6e481bf89aeb881b61cea930b52d9bd91a6b9501c1f9d18b",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/lFJblBlb.m4a",
+      "audio_only_sha256": "d01b1f2cd774b2b9a483852a85ad2815e906ce1fadf5b9774f2a3e4ce182414d",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "WVCNxHrI",
+      "split": "test",
+      "original_path": "data/worldsense/videos/WVCNxHrI.mp4",
+      "original_sha256": "e2369166f8784e2fe78f31fd2a2343cc998134ee2f0a07582765a8f44bfc44ad",
+      "original_duration": 92.8,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/WVCNxHrI.mp4",
+      "video_only_sha256": "0651416ab6c958d32c4764b852d7e81b95e2f84750e2ebac410d6827c82f3be4",
+      "video_only_duration": 92.8,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/WVCNxHrI.m4a",
+      "audio_only_sha256": "dea700246db5e54ae9c2ecc40407c9f366b38cba1076745b028c5c66579f7889",
+      "audio_only_duration": 92.8,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "QeCZwxHr",
+      "split": "test",
+      "original_path": "data/worldsense/videos/QeCZwxHr.mp4",
+      "original_sha256": "6ba2dc76882074206f4505c8ab1611ecd0195f003fb388e5eda76a18d1876519",
+      "original_duration": 45.612279,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/QeCZwxHr.mp4",
+      "video_only_sha256": "ef06b3cd747e3527690233aae7a37800f091abc0cd9204fb457c6b56e22a85b6",
+      "video_only_duration": 45.612279,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/QeCZwxHr.m4a",
+      "audio_only_sha256": "f8786fdcd546736acdefdf10b5c0f258bc53f5b91f89e56851c9f492c3ffb895",
+      "audio_only_duration": 45.611995,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "zhSaWdPv",
+      "split": "test",
+      "original_path": "data/worldsense/videos/zhSaWdPv.mp4",
+      "original_sha256": "b1433fcc7403bc69ee1c10ba7aac520ed6c2fedc5e532607e9704efdfc7bd959",
+      "original_duration": 62.135113,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/zhSaWdPv.mp4",
+      "video_only_sha256": "1ca727defb02b478be7f8ff13a754ef2b13e2612b843e79e235fc7929e0d3551",
+      "video_only_duration": 62.135113,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/zhSaWdPv.m4a",
+      "audio_only_sha256": "2b8689d32c7f17cf5a1af3ba64da81af7e551f2af46e40cbdbb20c05b6607c39",
+      "audio_only_duration": 62.103991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "hIwjTYLc",
+      "split": "test",
+      "original_path": "data/worldsense/videos/hIwjTYLc.mp4",
+      "original_sha256": "24517fd721896c61b38ab76523531d68bb37778d29ada8a8945d677fac90ebdb",
+      "original_duration": 76.910244,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/hIwjTYLc.mp4",
+      "video_only_sha256": "2d068d03cc85298841c2a256b39a70fdc13b24d7422044ad58dcb362634f1389",
+      "video_only_duration": 76.910244,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/hIwjTYLc.m4a",
+      "audio_only_sha256": "d7e237d8f609eca4f14812830cdca1e250cb47394e85f1af2199961202bc72e2",
+      "audio_only_duration": 76.91,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "XWuxbcDK",
+      "split": "test",
+      "original_path": "data/worldsense/videos/XWuxbcDK.mp4",
+      "original_sha256": "4b5393d70c110bf3cafbf8c2212a1f1515a5fb15399b31021156c2849e06f30a",
+      "original_duration": 56.756757,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/XWuxbcDK.mp4",
+      "video_only_sha256": "ca7d6a4371a8dd57ad65e3d76e8be164bc2573b07d42dc30c8fe724e2280db5d",
+      "video_only_duration": 56.756757,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/XWuxbcDK.m4a",
+      "audio_only_sha256": "6fb84332bf6b90a47c36dc0e6af94d188467560c878a34e5947302a9b95f7a51",
+      "audio_only_duration": 56.756009,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "GXVWYASR",
+      "split": "test",
+      "original_path": "data/worldsense/videos/GXVWYASR.mp4",
+      "original_sha256": "d6420ce9d3b6767d8d1498e0e648bafb29e4b41d5c45168374285eaaa3c9ee58",
+      "original_duration": 59.993327,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/GXVWYASR.mp4",
+      "video_only_sha256": "3519e0b7591f18469d340e3dc58fbc8dc2c14799d8f7d92bf6d2b6f1076cf92a",
+      "video_only_duration": 59.993327,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/GXVWYASR.m4a",
+      "audio_only_sha256": "57c12a1707564bdeb1ad82815ff314e3c907f656804820a5631aa8405eef9dd6",
+      "audio_only_duration": 59.96,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "GeKVDdqj",
+      "split": "test",
+      "original_path": "data/worldsense/videos/GeKVDdqj.mp4",
+      "original_sha256": "8546f111c3ae374792a1e2441bcebe300bfc6681f968a7abef0c884dcc0b3e6d",
+      "original_duration": 31.5,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/GeKVDdqj.mp4",
+      "video_only_sha256": "0787fcabe8e760a5688431f25ba319ad3208def0f4e7fe7c32236b22c2d6d6ba",
+      "video_only_duration": 31.5,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/GeKVDdqj.m4a",
+      "audio_only_sha256": "9fa8d9fc6f829646f6f6be8aca7a723f3464e1cd091480932db9b097757135bb",
+      "audio_only_duration": 31.467007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "YvDzQAnH",
+      "split": "test",
+      "original_path": "data/worldsense/videos/YvDzQAnH.mp4",
+      "original_sha256": "0fea5ac4dc9b12a180077cdaa1be1a6b85922f4e806cf95633ec17b0ab161bc2",
+      "original_duration": 108.842176,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/YvDzQAnH.mp4",
+      "video_only_sha256": "6ea81d565e2e5c9c6d51d1e6f5c5cffff00b3a7a26a9a87c80ef901cad194a6c",
+      "video_only_duration": 108.842176,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/YvDzQAnH.m4a",
+      "audio_only_sha256": "c160f6da42acd667639aa754eafe230e868911f6709d4618143de155ffddffcf",
+      "audio_only_duration": 108.841995,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "jzdbThgZ",
+      "split": "test",
+      "original_path": "data/worldsense/videos/jzdbThgZ.mp4",
+      "original_sha256": "285e550e178c15915cdd5568a67a345810e36a2ef14d9db6f6d4ae516a7e50d5",
+      "original_duration": 46.24,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/jzdbThgZ.mp4",
+      "video_only_sha256": "dbbb9b16c6bf1a930f136638a05b0ab2dd2b93ec23e02da9ba9243b36cbff72d",
+      "video_only_duration": 46.24,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/jzdbThgZ.m4a",
+      "audio_only_sha256": "990b2066acfe810390bc53a3dcbbaf8393201a3f20ec0ce8dd7f121b491a411d",
+      "audio_only_duration": 46.24,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "hLaXEfNE",
+      "split": "test",
+      "original_path": "data/worldsense/videos/hLaXEfNE.mp4",
+      "original_sha256": "2b1d79ad8d309a5e69c04cdab96335f7a23cf6e1260db7497027dcac6e357d18",
+      "original_duration": 40.34034,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/hLaXEfNE.mp4",
+      "video_only_sha256": "7723d9ff7479d2008ede4f2ce6a0d290df2f517a887835a3ac2f7dc0220beabb",
+      "video_only_duration": 40.34034,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/hLaXEfNE.m4a",
+      "audio_only_sha256": "fd12e9785b2e240513f9cc4584278bfc9d71993cdfa924d7910bb093886bf50c",
+      "audio_only_duration": 40.307007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "rDcsswVJ",
+      "split": "test",
+      "original_path": "data/worldsense/videos/rDcsswVJ.mp4",
+      "original_sha256": "8c6fa22c52ee620d16d14e10c47262a0531536a68cb6b0a866e112cbba16035b",
+      "original_duration": 112.6,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/rDcsswVJ.mp4",
+      "video_only_sha256": "ddaff6b0cf3b73d9a0f06d431f3aaa685547bc67185a744e5d3aaae175470396",
+      "video_only_duration": 112.6,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/rDcsswVJ.m4a",
+      "audio_only_sha256": "c430971e88b1f89195524c957fc6ccce9f260b45e0de26441ec3331f37917192",
+      "audio_only_duration": 112.567007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "wIaZkXzf",
+      "split": "test",
+      "original_path": "data/worldsense/videos/wIaZkXzf.mp4",
+      "original_sha256": "7d883d2234a0daaddb51d46efc1a272c8e3faf9937a83ee77f0b23602dc62da7",
+      "original_duration": 70.6,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/wIaZkXzf.mp4",
+      "video_only_sha256": "1d8f6c8ae57b3eb6ae92862b6167905422ccadf43048330591494d6c62f4e56b",
+      "video_only_duration": 70.6,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/wIaZkXzf.m4a",
+      "audio_only_sha256": "ebf7a505e20323ce2f6b619f0e44658fa3451993f2699fa6d3ab34a65bfae007",
+      "audio_only_duration": 70.6,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "RYmbMlyz",
+      "split": "test",
+      "original_path": "data/worldsense/videos/RYmbMlyz.mp4",
+      "original_sha256": "365f7b750a3bcdb04e26ef894c45fd67eedeba5bea455667404c9f9fbb192673",
+      "original_duration": 95.68,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/RYmbMlyz.mp4",
+      "video_only_sha256": "8ac6ba56ca6f2058a3760a49177eba790da88430aaaa6faff27d9e7c8e1d31e6",
+      "video_only_duration": 95.68,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/RYmbMlyz.m4a",
+      "audio_only_sha256": "dd04aa69456b3681c09ab003c0b99e542e795d1ebdd6f178cea16a297b817950",
+      "audio_only_duration": 95.68,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "tBTQfDVX",
+      "split": "test",
+      "original_path": "data/worldsense/videos/tBTQfDVX.mp4",
+      "original_sha256": "4e7c02fd8d17f5feb45302adc01b5a9bfec422792e8bd324a2bfd4e8386e59b8",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/tBTQfDVX.mp4",
+      "video_only_sha256": "aa53f75a12a83dbbc76f6327f3a2da39a5fd13d7e8607bda90a7ecf73113402f",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/tBTQfDVX.m4a",
+      "audio_only_sha256": "50df9d7fb106f84adaa991101775f59d0dd7731f463d036a2fbe3762c86e6194",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "wYKRfRNr",
+      "split": "test",
+      "original_path": "data/worldsense/videos/wYKRfRNr.mp4",
+      "original_sha256": "0ca8e060460aee5ec23e3f1b3ff232f7cc6517dc79fbbc7c823a43095adcdfc6",
+      "original_duration": 108.958333,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/wYKRfRNr.mp4",
+      "video_only_sha256": "008679a078fce64997c7c7da600571540ac404a349cd7f6bd9ad88f35419459c",
+      "video_only_duration": 108.958333,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/wYKRfRNr.m4a",
+      "audio_only_sha256": "45b872e6fbfa1f173e639c60a4a92473e5e6bbeb19d50f4645796fe4ea83a1f4",
+      "audio_only_duration": 108.917007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "QNdjTPvE",
+      "split": "test",
+      "original_path": "data/worldsense/videos/QNdjTPvE.mp4",
+      "original_sha256": "f97b8dac70c72b34935035743638b5a3c7eccd209207340c73a94953e195b3c5",
+      "original_duration": 114.386989,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/QNdjTPvE.mp4",
+      "video_only_sha256": "efba9303f8ab58a83b0334f8ad3727300557d63badf6fcb3772f70c926a7e161",
+      "video_only_duration": 114.386989,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/QNdjTPvE.m4a",
+      "audio_only_sha256": "d882577b71f7ca8b5b5aa0f7fb9828a403c18722de679346d1c5d15a0da701e7",
+      "audio_only_duration": 114.365011,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "SbbeAnCD",
+      "split": "test",
+      "original_path": "data/worldsense/videos/SbbeAnCD.mp4",
+      "original_sha256": "3552a09478795bbcda67c07137d9222ed6f5ac73c057702c7c167d7c753bf2ac",
+      "original_duration": 54.9,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/SbbeAnCD.mp4",
+      "video_only_sha256": "035c133d51ce612b41e7d16445a6cbaec8c24ddb5f18bf6b66a7ae2a1647092f",
+      "video_only_duration": 54.9,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/SbbeAnCD.m4a",
+      "audio_only_sha256": "5516ca7463433434e69306db191bd5e3d4de48af0466c61b68a52675c90b7990",
+      "audio_only_duration": 54.867007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "aXKlhzgv",
+      "split": "test",
+      "original_path": "data/worldsense/videos/aXKlhzgv.mp4",
+      "original_sha256": "37ed280468e8f10cb43322d41a0ad762401201d80442f2f6e6facc4c828ca013",
+      "original_duration": 73.75,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/aXKlhzgv.mp4",
+      "video_only_sha256": "c895b3b332816cbbac689958812c484f42b9f5662eee347d1a6e9322d751aeae",
+      "video_only_duration": 73.75,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/aXKlhzgv.m4a",
+      "audio_only_sha256": "3cd874ba0e99fa39d658be900b14ea5735f0a7c945d1e42ee59eb5c2176b7c33",
+      "audio_only_duration": 73.75,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "maNiUSOx",
+      "split": "test",
+      "original_path": "data/worldsense/videos/maNiUSOx.mp4",
+      "original_sha256": "38667e692fe63759c0baa4accb7d9ab6c1813489783e6af06a6799d9e503faab",
+      "original_duration": 113.460254,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/maNiUSOx.mp4",
+      "video_only_sha256": "cffbbf7f43bef71dd3ea88252e647a318cfc49ae6e5460efcb25381a2424b77f",
+      "video_only_duration": 113.460254,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/maNiUSOx.m4a",
+      "audio_only_sha256": "4234184baa07a82131a45b5150b28e54ccb2e9ccb0b9cd7eac28246a989b2cdb",
+      "audio_only_duration": 113.45,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "ShWVlzGB",
+      "split": "test",
+      "original_path": "data/worldsense/videos/ShWVlzGB.mp4",
+      "original_sha256": "784998b0ab884267b88f1ac5ff24bbb86b5a8cf811b52e15e2ef6ff925feaec3",
+      "original_duration": 88.588589,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/ShWVlzGB.mp4",
+      "video_only_sha256": "5f7819e9ef420130b06c0e9da940abab21c3be521b6cb39e2b35c172e1fec3e3",
+      "video_only_duration": 88.588589,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/ShWVlzGB.m4a",
+      "audio_only_sha256": "6caf5f7ea4ada050637dc49b5a43bc8e905347af963e1dbf60240da12dc3e2ef",
+      "audio_only_duration": 88.588005,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "HfpYwkJi",
+      "split": "test",
+      "original_path": "data/worldsense/videos/HfpYwkJi.mp4",
+      "original_sha256": "d803b108cab8b9df0190b96ec67f7ccf02875dbb4cce011d5b8601ac550e2305",
+      "original_duration": 63.963964,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/HfpYwkJi.mp4",
+      "video_only_sha256": "7aba88a8c7ba604f90a13993c2212a5447648aa7da4f43e8b6438b8ccc750f22",
+      "video_only_duration": 63.963964,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/HfpYwkJi.m4a",
+      "audio_only_sha256": "20f4a098dcfea115025d3252494f85e287485de9e5c436feca321301c239de7e",
+      "audio_only_duration": 63.930998,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "bVsFUogL",
+      "split": "test",
+      "original_path": "data/worldsense/videos/bVsFUogL.mp4",
+      "original_sha256": "41f739ae6e7fc85b9da0b0efe09f29dc621fa645c1b0313a9233d30ade90b7ff",
+      "original_duration": 25.0,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/bVsFUogL.mp4",
+      "video_only_sha256": "0a00250c2330a75e58b031822fc9b66ad5bc689405aad696dfe420dc154283de",
+      "video_only_duration": 25.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/bVsFUogL.m4a",
+      "audio_only_sha256": "f0afb361cdd63094cfdd9407af628e878145618e0e4c4cee09326995000d928c",
+      "audio_only_duration": 24.967007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "DxdbDgnm",
+      "split": "test",
+      "original_path": "data/worldsense/videos/DxdbDgnm.mp4",
+      "original_sha256": "ea05dcca5e55b7e84fe9e83aeb720b43f4358d120176495e6cdda665fb8e4f53",
+      "original_duration": 73.0,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/DxdbDgnm.mp4",
+      "video_only_sha256": "e337a31c3171957c6b629b3db6fbf71c8f8ebc4bfd5f91763c29f8a17f34c34d",
+      "video_only_duration": 73.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/DxdbDgnm.m4a",
+      "audio_only_sha256": "cd970651b89368b7d0a10323eeb79901615fe2c3ceb3c98df9aeb91c6f061cb9",
+      "audio_only_duration": 72.967007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "liYaHkhW",
+      "split": "test",
+      "original_path": "data/worldsense/videos/liYaHkhW.mp4",
+      "original_sha256": "f09fdf5bca1e51f0743b7536820cdf16a666890e6e514c867a6eef7523a8c8bd",
+      "original_duration": 41.24,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/liYaHkhW.mp4",
+      "video_only_sha256": "e2da4f644beff45754c18186b28d1788e551186c70c4792935d7a6e238bb2094",
+      "video_only_duration": 41.24,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/liYaHkhW.m4a",
+      "audio_only_sha256": "896da790ffcd3deca2f8c7ab0f327d826442fe843f114c015e4c9f8ee9fe2269",
+      "audio_only_duration": 41.24,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "yMhAdUta",
+      "split": "test",
+      "original_path": "data/worldsense/videos/yMhAdUta.mp4",
+      "original_sha256": "cf97a5bd201fc4b0d9cda8bc9fe9b7445af5ab41edf10e9aa4e2a63f4f8550ad",
+      "original_duration": 53.453453,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/yMhAdUta.mp4",
+      "video_only_sha256": "5e706d89069996f873e38b1fb5139cb9995a4a1af040280837a6e1b4c7a94ab6",
+      "video_only_duration": 53.453453,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/yMhAdUta.m4a",
+      "audio_only_sha256": "e054190650613e588264db3de626950f85d05726f26b16960c494d51b594da04",
+      "audio_only_duration": 53.452993,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "ipBErquQ",
+      "split": "test",
+      "original_path": "data/worldsense/videos/ipBErquQ.mp4",
+      "original_sha256": "4a877ff35195a3176bdadbb4595e2ec6a44c76ff25a57bdbc656e35e89fa25b7",
+      "original_duration": 98.733333,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/ipBErquQ.mp4",
+      "video_only_sha256": "d4ecd9f8e97f873e4df0e8e79e005eb3b9deda96fc45fde091daace34a40181d",
+      "video_only_duration": 98.733333,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/ipBErquQ.m4a",
+      "audio_only_sha256": "3ab3c4f62408844a0f39999ff6a8bc3aba08c1951045cc82bc63fb0f5da12bb5",
+      "audio_only_duration": 98.732993,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "nlfaBeRz",
+      "split": "test",
+      "original_path": "data/worldsense/videos/nlfaBeRz.mp4",
+      "original_sha256": "a012157fb0b901dc59b440b1d33af247f47d0ad3bbb581647226de8f5ef5a27c",
+      "original_duration": 51.416667,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/nlfaBeRz.mp4",
+      "video_only_sha256": "b011f039e17043679f718d4d220f4e04e3daac75967d11b52b15a1e66cd617e7",
+      "video_only_duration": 51.416667,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/nlfaBeRz.m4a",
+      "audio_only_sha256": "e9b1063274b903c2abfb5451e5e01cf0c41a67b5d7b32c52d933cc0d1a02658b",
+      "audio_only_duration": 51.416009,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "ygcWTUrg",
+      "split": "test",
+      "original_path": "data/worldsense/videos/ygcWTUrg.mp4",
+      "original_sha256": "b9309bde3cf368894b1d43a997f5487db29abcc54be2550776d47bac36a8f573",
+      "original_duration": 79.4,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/ygcWTUrg.mp4",
+      "video_only_sha256": "6ebdf637f25ee70bf3650e971ac93ba9c7732be8481418f64cbda028870423e7",
+      "video_only_duration": 79.4,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/ygcWTUrg.m4a",
+      "audio_only_sha256": "968c6a23721872122f68bc3637b60a495f6655303e126e17c7a9dd2c7fda9024",
+      "audio_only_duration": 79.36,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "QRgUeIzo",
+      "split": "test",
+      "original_path": "data/worldsense/videos/QRgUeIzo.mp4",
+      "original_sha256": "a39cb9505c9ebae32215eb89897dc51da6e18d86017e93fa716172d52cef862e",
+      "original_duration": 69.0,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/QRgUeIzo.mp4",
+      "video_only_sha256": "403ebce54519daaae48c30ebbedbcaf1bf9d2fc018fe2671fdfd36d36c666e74",
+      "video_only_duration": 69.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/QRgUeIzo.m4a",
+      "audio_only_sha256": "ed99a9941b4af4e126fad72881ef4dcff62c1977bf1877de46dcaa9a49d1641c",
+      "audio_only_duration": 68.999002,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "eLDjltll",
+      "split": "test",
+      "original_path": "data/worldsense/videos/eLDjltll.mp4",
+      "original_sha256": "01c2b18f5d183e0079ab326e201fab049bf37a7eb780973cc38db9bdd6adf38c",
+      "original_duration": 37.4,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/eLDjltll.mp4",
+      "video_only_sha256": "a19e9d1f9a25e9c213b3d87e92657a0b2616dbb0da18aa4ee11b2501e2e4fee2",
+      "video_only_duration": 37.4,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/eLDjltll.m4a",
+      "audio_only_sha256": "67ae9533b0598e88b2a4b16569b68730f594e1c5b6d8d0dadf6509d378953d65",
+      "audio_only_duration": 37.4,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "IaLHTnTl",
+      "split": "test",
+      "original_path": "data/worldsense/videos/IaLHTnTl.mp4",
+      "original_sha256": "c070ada811f45d83b86ec1769c0741a1441d1b14b7da91d6595793ab422b8825",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/IaLHTnTl.mp4",
+      "video_only_sha256": "d9bb367d216ed1ba3062e5dfde38302ac8231e75a2e00a5fc0427e5913d1fc17",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/IaLHTnTl.m4a",
+      "audio_only_sha256": "5a64a7daafe933e8de86e8ed21dbf8e106e4efe7934a222cbc0e948f8bd5b96f",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "gifWfvVv",
+      "split": "test",
+      "original_path": "data/worldsense/videos/gifWfvVv.mp4",
+      "original_sha256": "53999f0ee7aa0c75ccc8cd6e6c605a79c689abda00c075500995fb3822bc5736",
+      "original_duration": 93.993994,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/gifWfvVv.mp4",
+      "video_only_sha256": "750f28d6cbfeb461d9c297f03fbbd6bf5afa5f30cafc4f8a829ec8cda7b1d9ec",
+      "video_only_duration": 93.993994,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/gifWfvVv.m4a",
+      "audio_only_sha256": "a48f7bf44a3437f5d331afbfe6f90da6ec4788d138759c07206308fc617ebce9",
+      "audio_only_duration": 93.991995,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "exCyzNQV",
+      "split": "test",
+      "original_path": "data/worldsense/videos/exCyzNQV.mp4",
+      "original_sha256": "b29b49a833f5286578d3040f96a7fee9e1505f8dd3e8b51c03af313adbc0027c",
+      "original_duration": 70.27027,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/exCyzNQV.mp4",
+      "video_only_sha256": "4264b828d49b09fcf17bca200abd2a33fc7644dc4bdbfe94c27b5af8e01bd36a",
+      "video_only_duration": 70.27027,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/exCyzNQV.m4a",
+      "audio_only_sha256": "16b86331c14d294912d5f528ad4dd8ac80aecb046c7577ee0a95a80da05576f6",
+      "audio_only_duration": 70.237007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "DlZzwIzS",
+      "split": "test",
+      "original_path": "data/worldsense/videos/DlZzwIzS.mp4",
+      "original_sha256": "ffff7d47b715e85435f2963489c8dd0d771cc32086a8660c3c4d50514994169c",
+      "original_duration": 60.003991,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/DlZzwIzS.mp4",
+      "video_only_sha256": "265de860fbe8f3fbc4942149f4ba157687a2fecb49b2379953d83c4043375dcf",
+      "video_only_duration": 60.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/DlZzwIzS.m4a",
+      "audio_only_sha256": "ce82aa0a35f9209fd5fb60b783bd78189c42f3b54642a24012361e4f9bf35512",
+      "audio_only_duration": 60.003991,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "PIRxLdhc",
+      "split": "test",
+      "original_path": "data/worldsense/videos/PIRxLdhc.mp4",
+      "original_sha256": "ffa14947148c318cd1e1113f938c5b3a894110f2bd18b8b55ba47f15e77aac76",
+      "original_duration": 105.0,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/PIRxLdhc.mp4",
+      "video_only_sha256": "d5a26b9d38f5da17338ee5fc185be22b0460c0b8383db854cdde5dab867eb63c",
+      "video_only_duration": 105.0,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/PIRxLdhc.m4a",
+      "audio_only_sha256": "ddae425ac3d5ea2479eda9cad08cc719439a44265ccaa91093127d31de8a65fa",
+      "audio_only_duration": 104.967007,
+      "audio_only_codec": "aac"
+    },
+    {
+      "video_id": "PuzSTnxO",
+      "split": "test",
+      "original_path": "data/worldsense/videos/PuzSTnxO.mp4",
+      "original_sha256": "7b5bff53a7c84a371ac8a9b8205434af82258967b8176151ac881c6db05cc89d",
+      "original_duration": 40.34034,
+      "original_codecs": {
+        "video": "h264",
+        "audio": "aac"
+      },
+      "ffmpeg_version": "ffmpeg version 9.0.2",
+      "video_only_path": "data/worldsense/variants/video_only/PuzSTnxO.mp4",
+      "video_only_sha256": "6d7073f45b3f409e286c66c61bc217c8365e4bef64186966226c24d0c98ce3cc",
+      "video_only_duration": 40.34034,
+      "video_only_codec": "h264",
+      "audio_only_path": "data/worldsense/variants/audio_only/PuzSTnxO.m4a",
+      "audio_only_sha256": "3e254ad3b86ab015d6807912fb5de41cd7fb1b153834584e378a11c0ba2586d2",
+      "audio_only_duration": 40.307007,
+      "audio_only_codec": "aac"
+    }
+  ]
+}

@@ -1,5 +1,4 @@
 import json
-import shutil
 import struct
 import subprocess
 import sys
@@ -13,6 +12,7 @@ from scripts.download_frozen_videos import (
     frozen_examples,
 )
 from scripts.create_split import parse_duration_seconds
+from src.media_tools import find_tool
 
 
 # Report (but do not fail on) differences larger than this between the
@@ -96,7 +96,7 @@ def probe_mp4(path: Path) -> dict:
 def probe_ffprobe(path: Path) -> dict:
     result = subprocess.run(
         [
-            "ffprobe", "-v", "error",
+            find_tool("ffprobe"), "-v", "error",
             "-show_entries", "format=duration:stream=codec_type",
             "-of", "json",
             str(path),
@@ -129,7 +129,11 @@ def main() -> int:
     with open(MEDIA_MANIFEST, "r", encoding="utf-8") as f:
         manifest = {v["video_id"]: v for v in json.load(f)["videos"]}
 
-    use_ffprobe = shutil.which("ffprobe") is not None
+    try:
+        find_tool("ffprobe")
+        use_ffprobe = True
+    except RuntimeError:
+        use_ffprobe = False
     probe = probe_ffprobe if use_ffprobe else probe_mp4
 
     # ---------------------------------------------------------

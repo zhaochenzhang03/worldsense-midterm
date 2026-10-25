@@ -1,6 +1,11 @@
-# The current code (loader, split creation, validation, inspection) uses only
-# the Python standard library. No third-party packages are required yet.
+# The Python code uses only the standard library. No third-party Python
+# packages are required yet.
 # Developed with Python 3.14 (requires >= 3.10 for `X | Y` type hints).
+#
+# External (non-pip) dependency for the media scripts:
+#   ffmpeg/ffprobe 9.0.2 from conda-forge, in an isolated env:
+#     conda create -n worldsense-ffmpeg -c conda-forge --override-channels ffmpeg
+#   then set WORLDSENSE_FFMPEG_DIR to that env's bin/ directory.
 #
 # Model/API dependencies (e.g. for Gemini via the CMU AI Gateway) will be
 # added when evaluation is implemented.

@@ -23,6 +23,17 @@ modality necessity and substitutability on the WorldSense benchmark. Read
   kept, with no file-wide dedupe. Bracketed non-speech tags are kept. Never summarize, paraphrase, translate or replace subtitle text. Do not
   change this function without permission. `python -m scripts.inspect_subtitles`
   checks the processed output against the manifest digest.
+- **Media preprocessing is frozen** (`configs/experiment_manifest.json` →
+  `media_preprocessing`). Originals in `data/worldsense/videos/` are never
+  modified. `video_only` (.mp4) and `audio_only` (.m4a) are stream copies with
+  no re-encoding. `video_subtitle` reuses the `video_only` file plus the
+  processed subtitle as text, never burned in. Do not change codecs,
+  containers, ffmpeg flags or the ffmpeg version without permission. Run
+  `python -m scripts.validate_media` and `python -m scripts.validate_variants`
+  after any media change.
+- ffmpeg lives in the conda env `worldsense-ffmpeg`. Set
+  `WORLDSENSE_FFMPEG_DIR=~/miniforge3/envs/worldsense-ffmpeg/bin`. The system
+  Homebrew is too old for this macOS.
 - After touching anything split-related, run `python -m scripts.validate_split`.
   It must pass.
 

@@ -78,6 +78,48 @@
       "description": "question + answer choices only"
     }
   ],
+  "media_preprocessing": {
+    "frozen": true,
+    "originals": {
+      "dir": "data/worldsense/videos",
+      "manifest": "configs/media_manifest.json",
+      "stream_metadata": "configs/media_stream_metadata.json",
+      "source_codecs": "all 60: 1 H.264 (High) video stream + 1 AAC-LC audio stream, 44.1 kHz stereo; no other streams",
+      "never_modified": true
+    },
+    "ffmpeg": {
+      "version": "ffmpeg version 9.0.2",
+      "build": "conda-forge ffmpeg 9.0.2 gpl_h45cda2f_105",
+      "environment": "isolated conda env 'worldsense-ffmpeg' (~/miniforge3/envs/worldsense-ffmpeg); scripts locate it via WORLDSENSE_FFMPEG_DIR or PATH"
+    },
+    "variants": {
+      "video_only": {
+        "dir": "data/worldsense/variants/video_only",
+        "file": "<video_id>.mp4",
+        "rule": "keep first video stream by stream copy (no re-encode), drop audio, subtitle, data streams, metadata and chapters",
+        "command": "ffmpeg -nostdin -v error -i INPUT -map 0:v:0 -c:v copy -an -map_metadata -1 -map_chapters -1 -sn -dn -fflags +bitexact -flags:v +bitexact -f mp4 OUTPUT"
+      },
+      "audio_only": {
+        "dir": "data/worldsense/variants/audio_only",
+        "file": "<video_id>.m4a",
+        "rule": "keep first audio stream by stream copy (AAC-LC, original sample rate and channels, no re-encode), drop video, subtitle, data streams, metadata and chapters",
+        "command": "ffmpeg -nostdin -v error -i INPUT -map 0:a:0 -c:a copy -vn -map_metadata -1 -map_chapters -1 -sn -dn -fflags +bitexact -flags:a +bitexact -f ipod OUTPUT"
+      },
+      "manifest": "configs/variant_manifest.json",
+      "duration_tolerance_seconds": 0.1,
+      "deterministic": "re-running produces byte-identical files; copied streams are packet-identical to the originals (ffmpeg streamhash)"
+    },
+    "condition_inputs": {
+      "full": "data/worldsense/videos/<video_id>.mp4 (original, untouched)",
+      "video_only": "data/worldsense/variants/video_only/<video_id>.mp4",
+      "audio_only": "data/worldsense/variants/audio_only/<video_id>.m4a",
+      "video_subtitle": "data/worldsense/variants/video_only/<video_id>.mp4 + data/worldsense/processed_subtitles/<video_id>.txt as text (subtitles are not burned into frames)",
+      "subtitle_only": "data/worldsense/processed_subtitles/<video_id>.txt as text",
+      "question_only": "no media and no subtitle",
+      "always_included": "question + answer choices",
+      "never_included": "video_caption"
+    }
+  },
   "notes": [
     "video_caption is metadata only and must NEVER be used as model input (prompt or any other evaluation input); it describes the video content and would leak information.",
     "Subtitle conditions use the official WorldSense-provided subtitles, not model-generated captions or ASR transcripts. They are normalized deterministically (see subtitles.normalization) and bracketed non-speech tags are kept.",
